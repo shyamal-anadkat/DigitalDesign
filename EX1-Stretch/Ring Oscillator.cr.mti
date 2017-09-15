@@ -1,0 +1,8 @@
+C:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ringosc
+
+Top level modules:
+	ringosc
+
+} {} {}}

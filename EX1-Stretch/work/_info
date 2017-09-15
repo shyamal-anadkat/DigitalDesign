@@ -1,0 +1,34 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/zosta/OneDrive/ECE551/EX1
+vringosc
+DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+!s110 1505143810
+!i10b 1
+!s100 Q6cz6@9b;f:e^al=cl;;V0
+I27YKjlhh8:T::6UjIfXa^0
+VDg1SIo80bB@j0V0VzS_@n1
+!s105 ringosc_sv_unit
+S1
+dC:/Users/zosta/OneDrive/ECE551/EX1-Stretch
+w1505143665
+8C:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv
+FC:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv
+L0 1
+OP;L;10.4a;61
+r1
+!s85 0
+31
+!s108 1505143810.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX1-Stretch/ringosc.sv|
+!s101 -O0
+!i113 1
+o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
