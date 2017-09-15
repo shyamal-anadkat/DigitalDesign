@@ -9,65 +9,86 @@ z2
 cModel Technology
 dC:/Users/zosta/OneDrive/ECE551/EX1
 vdff
-!s110 1505483833
+Z0 !s110 1505488245
 !i10b 1
 !s100 6=9kC^I]@0c[cYOK7XNXE3
 IjPE?hLQ]zNgl7Ldk0ZGBZ2
-Z0 VDg1SIo80bB@j0V0VzS_@n1
-Z1 dC:/Users/zosta/OneDrive/ECE551/EX2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/zosta/OneDrive/ECE551/EX2
 w1505483764
 8C:/Users/zosta/OneDrive/ECE551/EX2/dff.v
 FC:/Users/zosta/OneDrive/ECE551/EX2/dff.v
 L0 1
-Z2 OP;L;10.4a;61
+Z3 OP;L;10.4a;61
 r1
 !s85 0
 31
-!s108 1505483833.000000
+Z4 !s108 1505488245.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/EX2/dff.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX2/dff.v|
 !s101 -O0
 !i113 1
-Z3 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+Z5 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+vsynch_detect
+R0
+!i10b 1
+!s100 6Q6=;noe_1A5JVPTQTV[[2
+I?FDTWSU4oa5>>J_A`YASM2
+R1
+R2
+w1505488206
+8C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect.v
+FC:/Users/zosta/OneDrive/ECE551/EX2/synch_detect.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect.v|
+!s101 -O0
+!i113 1
+R5
 vsynch_detect_tb
-!s110 1505483796
+R0
 !i10b 1
 !s100 R4Kglf<4zGfZ9iM7n`EGn3
 I=^[RRh4al9X>8MgAT6?oS0
-R0
 R1
+R2
 w1505483768
 8C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect_tb.v
 FC:/Users/zosta/OneDrive/ECE551/EX2/synch_detect_tb.v
 L0 1
-R2
+R3
 r1
 !s85 0
 31
-!s108 1505483796.000000
+R4
 !s107 C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX2/synch_detect_tb.v|
 !s101 -O0
 !i113 1
-R3
+R5
 vsynth_detect
-!s110 1505484117
+!s110 1505487703
 !i10b 1
-!s100 FOf^ZZIiU_<5a3I8mjQ_33
-I<aR[?=?9B2gcJR_H]EeaU0
-R0
+!s100 L4ebK=W7@U72YnRC<mogj2
+IG:Hz6:n3oDY=8K8J4DN`^1
 R1
-w1505484109
+R2
+w1505487696
 8C:/Users/zosta/OneDrive/ECE551/EX2/synth_detect.v
 FC:/Users/zosta/OneDrive/ECE551/EX2/synth_detect.v
 L0 1
-R2
+R3
 r1
 !s85 0
 31
-!s108 1505484117.000000
+!s108 1505487703.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/EX2/synth_detect.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX2/synth_detect.v|
 !s101 -O0
 !i113 1
-R3
+R5
