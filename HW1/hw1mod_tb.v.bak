@@ -1,0 +1,36 @@
+module hw1mod_tb();
+
+reg clk;
+reg sig_in;
+
+wire q;
+
+hw1mod iDUT(.q(q), .clk(clk), .d(sig_in));
+
+always begin 
+clk = 0;
+sig_in = 0;
+repeat(3) @(negedge clk);
+sig_in = 1; 
+repeat(2) @(posedge clk);
+if(q) begin
+    $display("ERROR");
+    //$stop();
+end
+@(posedge clk);
+#1;
+@(negedge clk);
+if(!q) begin
+  $display("ERROR");
+  //$stop();
+
+end
+
+
+$stop();
+end 
+
+always
+  #10 clk <= ~clk;		// toggle clock every 10 time units
+
+endmodule

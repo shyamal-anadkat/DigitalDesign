@@ -1,0 +1,20 @@
+module hw1mod(q, clk, d);
+
+input d;
+input clk;
+output q;
+
+wire mq, md, sd, w1;
+
+notif1 	#1 (md, d, clk);
+
+not	(mq, md);
+not 	(weak0,weak1) (md, mq); //weak 
+
+not 	(w1, clk);
+notif1 #1 (sd, mq, w1);
+
+not	(q, sd);
+not 	(weak0, weak1) (sd, q);
+
+endmodule

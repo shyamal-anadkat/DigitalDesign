@@ -1,0 +1,8 @@
+C:/Users/zosta/OneDrive/ECE551/HW1/hw1mod.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW1/hw1mod.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module hw1mod
+
+Top level modules:
+	hw1mod
+
+} {} {}}
