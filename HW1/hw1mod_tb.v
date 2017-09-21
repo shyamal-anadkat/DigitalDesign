@@ -1,46 +1,50 @@
+//** Shyamal H Anadkat **//
 module hw1mod_tb();
 
 reg clk;
-reg sig_in;
+reg d;
 
 wire q;
 
-hw1mod iDUT(.q(q), .clk(clk), .d(sig_in));
+// instance of tristate DUT
+hw1mod iDUT(.q(q), .clk(clk), .d(d));
 
-always begin 
+always begin
 clk = 0;
-sig_in = 0;
-
+d = 0;
 repeat(2) @(negedge clk);
-sig_in = 1; 
-repeat(1) @(negedge clk);
+
+d = 1;
+repeat(2) @(negedge clk);
 #3;
 
+// check on posedge after some delay
 if(!q) begin
-	$display("ERROR);
+	$display("ERROR");
 end 
 
+d = 0;
 repeat(2) @(posedge clk);
-sig_in = 0;
+#3;
+
+// check on pos edge after some delay
+if(q) begin
+	$display("ERROR");
+end
+
+d = 1;
 repeat(2) @(negedge clk);
-sig_in = 1; 
+d = 0;
 repeat(2) @(posedge clk);
-sig_in = 0;
-
-repeat(2) @(negedge clk);
-sig_in = 1; 
+d = 1;
 repeat(2) @(posedge clk);
-sig_in = 0;
+d = 0;
 
-repeat(1) @(negedge clk);
-sig_in = 0; 
-repeat(1) @(posedge clk);
-sig_in = 1;
-
+$display("TEST PASSED");
 $stop();
-end 
+end
 
 always
-  #10 clk <= ~clk;		// toggle clock every 10 time units
+#10 clk <=~clk; // toggle clock every 10 time units
 
 endmodule
