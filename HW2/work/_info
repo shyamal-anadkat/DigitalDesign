@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Modeltech_pe_edu_10.4a/examples
+vadder
+!s110 1506313909
+!i10b 1
+!s100 1dKEVmk=@X]CmIBeMF66M3
+I7>IHf3jd>4zh4X4H`L^CZ1
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/zosta/OneDrive/ECE551/HW2
+w1506311536
+8C:/Users/zosta/OneDrive/ECE551/HW2/adder.v
+FC:/Users/zosta/OneDrive/ECE551/HW2/adder.v
+L0 2
+Z2 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z3 !s108 1506313909.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/HW2/adder.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/adder.v|
+!s101 -O0
+!i113 1
+Z4 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+vadder_tb
+!s110 1506313910
+!i10b 1
+!s100 CnDF[TId6E>felO`liX;l1
+I9YI@_inl=LT6XlMSog4nI1
+R0
+R1
+w1506313894
+8C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
+FC:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
+L0 1
+R2
+r1
+!s85 0
+31
+R3
+!s107 C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v|
+!s101 -O0
+!i113 1
+R4

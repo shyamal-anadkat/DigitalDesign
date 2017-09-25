@@ -1,0 +1,15 @@
+C:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module arith_tb
+
+Top level modules:
+	arith_tb
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/EX4/arith.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/EX4/arith.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module arith
+
+Top level modules:
+	arith
+
+} {} {}}

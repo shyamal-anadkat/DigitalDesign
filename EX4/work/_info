@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Modeltech_pe_edu_10.4a/examples
+varith
+Z0 !s110 1506094109
+!i10b 1
+!s100 ZPDL3JbXBOeokA:V9P]Lk3
+I_3Bg_a>?gz77^_=5z6g5d2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/zosta/OneDrive/ECE551/EX4
+w1506094072
+8C:/Users/zosta/OneDrive/ECE551/EX4/arith.v
+FC:/Users/zosta/OneDrive/ECE551/EX4/arith.v
+L0 1
+Z3 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z4 !s108 1506094109.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/EX4/arith.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX4/arith.v|
+!s101 -O0
+!i113 1
+Z5 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+varith_tb
+R0
+!i10b 1
+!s100 TKFaYm=>=3;nFdCRIX@Ih1
+IO?]F0ARYOXO`cD55WXLZ30
+R1
+R2
+w1506094093
+8C:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v
+FC:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/EX4/arith_tb.v|
+!s101 -O0
+!i113 1
+R5
