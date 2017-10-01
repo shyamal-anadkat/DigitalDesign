@@ -6,6 +6,7 @@ reg [1:0] cin;
 wire [3:0] sum;
 wire co;
 
+
 //instantiate DUT
 adder iDUT(
 	.Sum(sum), 
