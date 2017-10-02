@@ -12,15 +12,15 @@ wire [5:0] w1, w2;
 
 
 //ptch_dterm = ptch_D_diff * 9
-assign ptch_dterm = ptch_D_diff * $signed(9);
+assign ptch_dterm = $signed(ptch_D_diff) * $signed(9);
 
 
 //ptch_pterm = (5/8) * ptch_err_sat
 assign w1 = ptch_err_sat >>> 1;
-assign w2 = ptch_err_sat >>> 4; 
+assign w2 = ptch_err_sat >>> 3; 
 assign ptch_pterm = $signed(w1) + $signed(w2); 
 
 //frnt_spd_calc = MIN_RUN_SPEED + thrst – ptch_pterm – ptch_dterm
-assign frnt_spd_calc = $signed(MIN_RUN_SPEED) + $signed(thrst) - $signed(ptch_pterm) - $signed(ptch_dterm);
+assign frnt_spd_calc = MIN_RUN_SPEED + thrst - $signed(ptch_pterm) - $signed(ptch_dterm);
 
 endmodule

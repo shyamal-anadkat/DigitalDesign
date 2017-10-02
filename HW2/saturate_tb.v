@@ -23,8 +23,8 @@ saturate iDUT (.unsigned_err(unsigned_err),
 	.signed_D_diff_sat(signed_D_diff_sat));
 
 initial begin
-$display("### Starting simulation ###");
-pass = 1; 
+	$display("### Starting simulation ###");
+	pass = 1; 
 
 unsigned_err = 17'b00010101010101010; //should saturate
 signed_D_diff = 10'b1111111111;       //should not saturate

@@ -1,0 +1,19 @@
+==========================
+HW2 PROB 5 SHYAMAL ANADKAT
+==========================
+
+a) Does it use a SPI, I2C, or UART interface?
+
+> It has a selectable SPI/I2C with the main processor. There is a dedicated auxiliary SPI and flexibility for te primary interace - I2C/SPI.
+
+b) Does the gyro output angular position, or angular rate? 
+
+> Angular rate data
+ 
+c) If we wanted an output data rate around 400 readings per second does it support that? 
+
+> the closest it supports is around 416 readings per second, or 416 Hz of data rate. 
+
+d) How would we synchronize our Verilog with it…how would we know it has a new set of measurements ready for us?
+
+> implement state machine 

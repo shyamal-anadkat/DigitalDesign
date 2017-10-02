@@ -6,6 +6,7 @@ reg [1:0] cin;
 wire [3:0] sum;
 wire co;
 
+reg fail; 
 
 //instantiate DUT
 adder iDUT(
@@ -19,6 +20,7 @@ initial begin
 	A = 4'b0000;
 	B = 4'b0000;
 	cin = 1'b0;
+	fail = 0; 
 	#5;
 	$display("### Starting simulation ###");
 
@@ -29,14 +31,20 @@ initial begin
 			begin 
 				#5;
 				if((A+B+cin) == {co, sum})
-					$display("Passed");
+					$display("%d + %d PASSED", A, B);
 				else
 				begin
-					$display("Failed");
+					fail = 1; 
+					$display("%d + %d FAILED", A, B);
+					$stop();
 				end
 			end
 		end
 	end
+	if(!fail) begin
+		$display("SUCCESS: Test Passed");
+	end
+	$stop();
 end
 
 endmodule

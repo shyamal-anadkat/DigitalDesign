@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 vadd8bit
-Z0 !s110 1506819563
+Z0 !s110 1506907999
 !i10b 1
 !s100 BzgW>@fa3jI3ARPAcS1<F3
 I:60I6JRFJ3mEHBZ^[ZE]_0
@@ -23,20 +23,20 @@ Z3 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z4 !s108 1506819563.000000
+Z4 !s108 1506907999.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW2/add8bit.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/add8bit.v|
 !s101 -O0
 !i113 1
 Z5 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
 vadder
-Z6 !s110 1506819562
+R0
 !i10b 1
-!s100 1dKEVmk=@X]CmIBeMF66M3
-I7>IHf3jd>4zh4X4H`L^CZ1
+!s100 >PE13J1JoAQ:B8;fhIDl?2
+IPX]6b^eb2J^VKFkaE0ZN=1
 R1
 R2
-w1506314034
+w1506822407
 8C:/Users/zosta/OneDrive/ECE551/HW2/adder.v
 FC:/Users/zosta/OneDrive/ECE551/HW2/adder.v
 L0 2
@@ -44,20 +44,20 @@ R3
 r1
 !s85 0
 31
-Z7 !s108 1506819562.000000
+R4
 !s107 C:/Users/zosta/OneDrive/ECE551/HW2/adder.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/adder.v|
 !s101 -O0
 !i113 1
 R5
 vadder_tb
-R6
+R0
 !i10b 1
-!s100 4GAASYdf25=3AF[_=4?921
-IKF2LA:8cJ4aX]lTgMbD]X1
+!s100 1lDNYdaYS05L6ZW;KPHLl0
+I=bB5T:@A]2b0IUz43NPAi1
 R1
 R2
-w1506697309
+w1506892027
 8C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
 FC:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
 L0 1
@@ -65,7 +65,7 @@ R3
 r1
 !s85 0
 31
-R7
+R4
 !s107 C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v|
 !s101 -O0
@@ -114,7 +114,7 @@ R4
 !i113 1
 R5
 vFA
-R6
+R0
 !i10b 1
 !s100 OE9=_<abSY]N;EYja?K4b2
 I6Am5PBI68f1dT9`WV=2jT0
@@ -128,7 +128,7 @@ R3
 r1
 !s85 0
 31
-R7
+R4
 !s107 C:/Users/zosta/OneDrive/ECE551/HW2/FA.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/FA.v|
 !s101 -O0
@@ -163,7 +163,7 @@ R0
 Ime<3hNVPHe<_IQ?WzN[eD3
 R1
 R2
-w1506802838
+w1506822436
 8C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v
 FC:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v
 L0 4
@@ -178,13 +178,13 @@ R4
 !i113 1
 R5
 vspeed
-R0
+Z6 !s110 1506908000
 !i10b 1
-!s100 ORM8e6zYO68OZIFk@Q>9T1
-ITG2zT86LmOL=LBo4CK0Zc0
+!s100 fPQYoZC`f`dJGNfSSk6]h0
+IW[:[QO[@UN_^;FZ=8IiGH2
 R1
 R2
-w1506819542
+w1506907978
 8C:/Users/zosta/OneDrive/ECE551/HW2/speed.v
 FC:/Users/zosta/OneDrive/ECE551/HW2/speed.v
 L0 1
@@ -192,20 +192,20 @@ R3
 r1
 !s85 0
 31
-R4
+!s108 1506908000.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW2/speed.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW2/speed.v|
 !s101 -O0
 !i113 1
 R5
 vspeed_tb
-R0
+R6
 !i10b 1
-!s100 jHRI>E?9PaJ`S829z37963
-I_?5bgAnVQc92P9[Zli7B>0
+!s100 :6jn97ao86g0YNJ;>5?^Z3
+IMQDEZF6^I;Smnl2NSi1SW0
 R1
 R2
-w1506819544
+w1506907963
 8C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
 FC:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
 L0 1

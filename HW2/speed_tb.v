@@ -16,16 +16,15 @@ initial begin
 $display("### Starting simulation ###");
 
 ptch_D_diff = 6'b001001; //9
-ptch_err_sat = 10'b0000010001; //17
+ptch_err_sat = 10'b0000001000; //8
 thrst = 9'b000100001; //33
 #5;
 $display("ptch_dterm: %d", iDUT.ptch_dterm);
 $display("ptch_pterm: %d", iDUT.ptch_pterm);
 $display("frnt_spd_calc: %d", frnt_spd_calc);
 
-$display("Expected: ", $signed(13'h0200) + $signed(thrst) - $signed((5/8) * ptch_err_sat) - $signed(ptch_D_diff * $signed(9)));
-
-
+$display("Expected: ", 13'h0200 + thrst - 
+	$signed((5/8) * $signed(ptch_err_sat)) - $signed($signed(ptch_D_diff) * $signed(9)));
 
 $stop();		//stop simulation
 end 
