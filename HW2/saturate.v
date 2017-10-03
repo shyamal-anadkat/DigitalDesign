@@ -21,13 +21,13 @@ assign unsigned_err_sat = (|unsigned_err[16:10]) ?   //are any bits set in 16:10
 MAX_10 : unsigned_err[9:0];					         //if so highest +ve
 
 //signed-err-sat 
-assign signed_err_sat = (~signed_err[16]) ?           // positive ? 
+assign signed_err_sat = (~signed_err[16]) ?           //positive ? 
 (!(|signed_err[16:10]) ? signed_err[9:0] : MAX_10) :  //is any bit in 16:10 unset ? 
 ((&signed_err[16:10]) ? signed_err[9:0]: MIN_10);
 
 //signed-D-diff
-assign signed_D_diff_sat = ~(signed_D_diff[9]) ?       //positive ?
-(!(|signed_D_diff[9:6]) ? signed_D_diff[5:0] : MAX_6) : 
+assign signed_D_diff_sat = ~(signed_D_diff[9]) ?        //positive ?
+(!(|signed_D_diff[9:6]) ? signed_D_diff[5:0] : MAX_6) : //is any bit in 16:10 unset ?
 ((&signed_D_diff[9:6]) ? signed_D_diff[5:0]: MIN_6);
 
 endmodule

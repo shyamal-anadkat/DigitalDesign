@@ -1,3 +1,4 @@
+/*exhaustive test-bench for adder mod*/
 module adder_tb ();
 
 //stimulus
@@ -6,6 +7,7 @@ reg [1:0] cin;
 wire [3:0] sum;
 wire co;
 
+//fail sig :ERR if asserted
 reg fail; 
 
 //instantiate DUT
@@ -17,13 +19,16 @@ adder iDUT(
 	.cin(cin[0]));
 
 initial begin
-	A = 4'b0000;
-	B = 4'b0000;
-	cin = 1'b0;
+	//init stimuli
+	A    = 4'b0000;
+	B    = 4'b0000;
+	cin  = 1'b0;
 	fail = 0; 
-	#5;
-	$display("### Starting simulation ###");
+	#5; //wait 5 time units
+	$display("### Starting simulation/testing ###");
 
+	// for cin 0, 1 test all values of A and B. 
+	// one bit extra to avoid infinite loop
 	for(cin = 0; cin < 2 ; cin = cin+ 1) begin
 		for(A = 0; A < 16; A=A+1)
 		begin
@@ -42,7 +47,7 @@ initial begin
 		end
 	end
 	if(!fail) begin
-		$display("SUCCESS: Test Passed");
+		$display("##### SUCCESS: Test Passed #####");
 	end
 	$stop();
 end

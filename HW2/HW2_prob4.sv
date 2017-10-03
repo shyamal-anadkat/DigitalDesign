@@ -1,52 +1,57 @@
 module HW2_prob4 ();
 
+	/* a) the code is incorrect as it models a flip flop not a latch. 
+	d should be in sensitive list. */
 
 
-// the code is correct as at positive clock edge
-// the output(q) will update to input(d). 
+	/* b) the model of a D-FF with an active high synchronous reset. */
+	module b(d, rst, clk, q);
+		output logic q;
+		input d, clk, rst;
+		always_ff @ (posedge clk) begin
+			if(rst) begin
+				q <= 1'b0;
+			end else begin
+				q <= d;
+			end
+		end
+	endmodule
 
 
-
-//the model of a D-FF with an active high synchronous reset. 
-always @ (posedge)
-
-if(rst) begin
-	q <= 1'b0;
-end else begin
-	q <= d;
-end
-
-end
-
+	/*c) DFF with asynch low rst and active high enable */
+	module c(d, rst_n, en, clk, q);
+		output logic q;
+		input d, rst_n, clk, en;
+		always_ff @(posedge clk, negedge rst_n) begin
+			if(!rst_n) begin
+			q <= 1'b0; //asynch reset
+		end else if(en) begin
+			q <= d;    //conditionally enabled 
+		end else begin
+			q <= q;    //keep old value
+		end
+	end
 endmodule
 
 
 
-
-always_ff @(posedge clk or negedge rst_n) 
-	if(~rst_n) begin
-		q <= 1'b0;
-	else 
-		q <= d;
-end
-
-
-
-logic q; 
-always @(posedge clk, negedge rst_n)
-	if(!rst_n)
-		q <= 1'b0; //asynch reset
-	else if(en)
-		q <= d;    //conditionally enabled 
-	else
-		q <= q;    //keep old value
+/* d) SR FF with active low asynch reset. */
+module d (rst_n, clk, S, R, q);
+	output logic q; 
+	input clk, rst_n, S, R;
+	always_ff @(posedge clk, negedge rst_n) begin
+		if(!rst_n) begin		//asynch low reset
+			q <= 1'b0; 
+		end else if(R) begin    //synch R which resets(preference)
+			q <= 1'b0; 
+		end else if(S) begin    //synch S which sets
+			q <= 1'b1; 
+		end
+	end
+endmodule
 
 
-logic q; 
-always @(posedge clk, negedge rst_n)
-	if(!rst_n)
-		q <= 1'b0; //asynch reset
-	else if(en)
-		q <= d;    //conditionally enabled 
-	else
-		q <= q;    //keep old value
+
+/* e) nope, it will just warn us. Its not a certainty.*/
+
+endmodule
