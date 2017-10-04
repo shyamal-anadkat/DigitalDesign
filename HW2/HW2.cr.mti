@@ -1,23 +1,9 @@
-C:/Users/zosta/OneDrive/ECE551/HW2/speed.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module speed
-
-Top level modules:
-	speed
-
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v
+C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module saturate
 
 Top level modules:
 	saturate
-
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module adder_tb
-
-Top level modules:
-	adder_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -26,12 +12,21 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	arith_tb
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed.v {2 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module speed_tb
+-- Compiling module speed
+** Warning: C:/Users/zosta/OneDrive/ECE551/HW2/speed.v(5): (vlog-2608) Keyword "unsigned" not allowed here in Verilog 2001.
+
 
 Top level modules:
-	speed_tb
+	speed
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module adder_tb
+
+Top level modules:
+	adder_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -39,6 +34,23 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	saturate_tb
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/HW2_prob4.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/HW2_prob4.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module HW2_prob4
+-- Compiling module b
+-- Compiling module c
+-- Compiling module d
+
+Top level modules:
+	HW2_prob4
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module speed_tb
+
+Top level modules:
+	speed_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/FA.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/FA.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015

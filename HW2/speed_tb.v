@@ -24,6 +24,8 @@ initial begin
 ptch_D_diff = 6'h0F; 
 ptch_err_sat = 10'h0E2; 
 thrst = 9'h0A0; 
+expected = 13'h0200 + thrst - 
+$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 #5;
 
 if(debug) begin
@@ -31,9 +33,6 @@ if(debug) begin
 	$display("ptch_pterm: %d", iDUT.ptch_pterm);
 	$display("frnt_spd_calc: %h", frnt_spd_calc);
 end
-
-expected = 13'h0200 + thrst - 
-$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 
 if(frnt_spd_calc != expected) begin
 	$display("FAILED. Expected: %h", expected);
@@ -45,6 +44,8 @@ end
 ptch_D_diff = 6'b001001; //9
 ptch_err_sat = 10'b0000001000; //8
 thrst = 9'b000100001; //33
+expected = 13'h0200 + thrst - 
+$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 #5;
 
 if(debug) begin
@@ -52,9 +53,6 @@ if(debug) begin
 	$display("ptch_pterm: %d", iDUT.ptch_pterm);
 	$display("frnt_spd_calc: %h", frnt_spd_calc);
 end
-
-expected = 13'h0200 + thrst - 
-$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 
 if(frnt_spd_calc != expected) begin
 	$display("FAILED. Expected: %h", expected);
@@ -66,6 +64,8 @@ end
 ptch_D_diff = 6'b101001; //9
 ptch_err_sat = 10'b1100001000; //8
 thrst = 9'b000100001; //33
+expected = 13'h0200 + thrst - 
+$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 #5;
 
 if(debug) begin
@@ -73,9 +73,6 @@ if(debug) begin
 	$display("ptch_pterm: %d", iDUT.ptch_pterm);
 	$display("frnt_spd_calc: %h", frnt_spd_calc);
 end
-
-expected = 13'h0200 + thrst - 
-$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 
 if(frnt_spd_calc != expected) begin
 	$display("FAILED. Expected: %h", expected);
@@ -88,6 +85,8 @@ end
 ptch_D_diff = 6'b101001; //9
 ptch_err_sat = 10'b0100001000; //8
 thrst = 9'b001100001; //33
+expected = 13'h0200 + thrst - 
+$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 #5;
 
 if(debug) begin
@@ -95,9 +94,6 @@ if(debug) begin
 	$display("ptch_pterm: %d", iDUT.ptch_pterm);
 	$display("frnt_spd_calc: %h", frnt_spd_calc);
 end
-
-expected = 13'h0200 + thrst - 
-$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 
 if(frnt_spd_calc != expected) begin
 	$display("FAILED. Expected: %h", expected);
@@ -109,6 +105,8 @@ end
 ptch_D_diff = 6'b010001; 
 ptch_err_sat = 10'b1000000000; 
 thrst = 9'b001100001; 
+expected = 13'h0200 + thrst - 
+$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 #5;
 
 if(debug) begin
@@ -116,9 +114,6 @@ if(debug) begin
 	$display("ptch_pterm: %d", iDUT.ptch_pterm);
 	$display("frnt_spd_calc: %h", frnt_spd_calc);
 end
-
-expected = 13'h0200 + thrst - 
-$signed(((5 * $signed(ptch_err_sat))/8)) - $signed($signed(ptch_D_diff) * $signed(9));
 
 if(frnt_spd_calc != expected) begin
 	$display("FAILED TEST-5. Expected: %h", expected);

@@ -2,7 +2,7 @@ module speed (ptch_D_diff,ptch_err_sat,thrst,frnt_spd_calc);
 
 input signed [5:0] ptch_D_diff;     
 input signed [9:0] ptch_err_sat;	
-input [8:0] thrst;		            
+input unsigned [8:0] thrst;		            
 output signed [12:0] frnt_spd_calc;
 
 localparam MIN_RUN_SPEED = 13'h0200;

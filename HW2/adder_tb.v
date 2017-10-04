@@ -48,8 +48,7 @@ initial begin
 	end
 	if(!fail) begin
 		$display("##### SUCCESS: Test Passed #####");
+		$stop();
 	end
-	$stop();
 end
-
 endmodule
