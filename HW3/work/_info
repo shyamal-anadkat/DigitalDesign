@@ -1,0 +1,35 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Modeltech_pe_edu_10.4a/examples
+vESC_interface
+DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+!s110 1507304202
+!i10b 1
+!s100 HB9f8]ghYgk969HASXU>Z3
+I_8;Jf`mC_=obRRQbZ^]XD1
+VDg1SIo80bB@j0V0VzS_@n1
+!s105 ESC_interface_sv_unit
+S1
+dC:/Users/zosta/OneDrive/ECE551/HW3
+w1507304198
+8C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
+FC:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
+L0 1
+OP;L;10.4a;61
+r1
+!s85 0
+31
+!s108 1507304202.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv|
+!s101 -O0
+!i113 1
+o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+n@e@s@c_interface

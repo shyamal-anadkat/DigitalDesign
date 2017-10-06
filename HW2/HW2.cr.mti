@@ -1,16 +1,9 @@
-C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v
+C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module saturate
+-- Compiling module adder_tb
 
 Top level modules:
-	saturate
-
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module arith_tb
-
-Top level modules:
-	arith_tb
+	adder_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed.v {2 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -21,19 +14,26 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	speed
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder_tb.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/arith_tb.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module adder_tb
+-- Compiling module arith_tb
 
 Top level modules:
-	adder_tb
+	arith_tb
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module saturate_tb
+-- Compiling module saturate
 
 Top level modules:
-	saturate_tb
+	saturate
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module speed_tb
+
+Top level modules:
+	speed_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/HW2_prob4.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/HW2_prob4.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -45,12 +45,12 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	HW2_prob4
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/speed_tb.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/saturate_tb.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module speed_tb
+-- Compiling module saturate_tb
 
 Top level modules:
-	speed_tb
+	saturate_tb
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/FA.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/FA.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -59,12 +59,12 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	FA
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/adder.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/arith.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/arith.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module adder
+-- Compiling module arith
 
 Top level modules:
-	adder
+	arith
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/add8bit.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/add8bit.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -73,11 +73,11 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	add8bit
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/arith.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/arith.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW2/adder.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW2/adder.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module arith
+-- Compiling module adder
 
 Top level modules:
-	arith
+	adder
 
 } {} {}}
