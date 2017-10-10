@@ -32,7 +32,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 //assign set and reset signal for FF
-assign reset = (cntr>=setting)? 1:0;
+assign reset = (cntr[16:0]>=setting)? 1:0;
 assign set = (&cntr==1'b1)? 1:0;
 
 
