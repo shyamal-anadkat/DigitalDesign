@@ -38,8 +38,8 @@ module ESC_test(clk,RST_n,inc,sel_speed,OFF,SPEED,PWM);
     ///////////////////////////////////////////////////////////////////////////
 	// Use assigns to create OFF and SPEED from output of your two counters //
 	/////////////////////////////////////////////////////////////////////////
-	assign OFF =   {0, cntr2, 5'h00};
-	assign SPEED = {cntr1, 7'h00};
+	assign OFF =   {1'b0, cntr2, 5'b0};
+	assign SPEED = {cntr1, 7'b0};
 	
 	///////////////////////////////////////////////////
 	// Instantiate ESC_interface (which is the DUT) //
