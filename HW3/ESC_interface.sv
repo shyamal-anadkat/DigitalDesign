@@ -28,7 +28,11 @@ end
 
 //20 bit cntr flip flop module
 always @(posedge clk or negedge rst_n) begin
-	assign cntr = (!rst_n) ? 20'h0000: cntr + 1; 
+	//assign cntr = (!rst_n) ? 20'h0000: cntr + 1; 
+	if(!rst_n)
+		cntr <= 20'h0000;
+	else 
+		cntr <= cntr + 1;
 end
 
 //assign set and reset signal for FF
