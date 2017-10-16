@@ -16,28 +16,29 @@ typedef enum reg[1:0] {IDLE, TRANS, DONE} state_t;
 state_t state, nxt_state;
 //////////////////////////////////////////////////////////////////////
 
-// shift module on the right
+// shift module on the right (DONE)
 always_ff @(posedge clk, negedge rst_n) begin 
 	if(~rst_n) begin
-		tx_shft_reg <= 10'b0; 
+		tx_shft_reg <= 10'h001; 
 	end else if(load) begin
 		tx_shft_reg <= {1'b1, tx_data, 1'b0};
 	end else if(shift) begin
 		tx_shft_reg <= {1'b1, tx_shft_reg[9:1]}; //right shift
 	end
 end
-
 assign TX = tx_shft_reg[0];
 
-// baud_cnt blob in the middle 
+
+// baud_cnt blob in the middle (DONE except OR)
 always_ff @(posedge clk) begin 
-	if(load) begin
+	if(load || shift) begin
 		baud_cnt <= 12'h000;
 	end else if(transmitting) begin
 		baud_cnt <= baud_cnt + 1; 
 	end
 end
 
+//shift every 2604 clock cycles
 assign shift = (baud_cnt == 2604);
 
 // bit_cnt FF on the left
@@ -78,7 +79,6 @@ always_comb begin
 	clr_done = 1'b0;
 	load = 1'b0;
 	transmitting = 1'b0; 
-	shift = 1'b0;
 
 	case(state)
 		IDLE:
@@ -90,6 +90,7 @@ always_comb begin
 		end
 		else begin 
 			nxt_state = IDLE;
+			set_done = 1'b1;
 		end
 
 		TRANS:

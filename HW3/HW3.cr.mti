@@ -19,6 +19,13 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	ss_A2D
 
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ss_A2D_tb
+
+Top level modules:
+	ss_A2D_tb
+
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ESC_test.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ESC_test.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module ESC_test
@@ -33,19 +40,12 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	PB_release
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module ss_A2D_tb
+-- Compiling module ss_A2D_SM
 
 Top level modules:
-	ss_A2D_tb
-
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module ESC_interface
-
-Top level modules:
-	ESC_interface
+	ss_A2D_SM
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v {1 {vlog -work work -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -54,12 +54,19 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	ss_A2D_datapath
 
-} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module ss_A2D_SM
+-- Compiling module UART_tx
 
 Top level modules:
-	ss_A2D_SM
+	UART_tx
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ESC_interface
+
+Top level modules:
+	ESC_interface
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015

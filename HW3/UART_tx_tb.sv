@@ -15,15 +15,27 @@ UART_tx  iDUT(.clk(clk),
 
 
 initial begin
-	rst_n = 1'b1;
-	clk = 1'b1;
+	rst_n = 0;
+	clk = 0;
+	trmt = 0;
+	tx_data = 0;
+	#5;
+	rst_n = 1;
 	tx_data = 8'b10101010;
 	#5;
-	rst_n = 1'b0;
-	@(posedge clk);
-	rst_n = 1'b1;
-	trmt = 1'b1;
+	trmt = 1;
+	#5;
+	trmt = 0; 
+	#(10*7000)
+	rst_n = 1; 
+	tx_data = 8'b01111011;
+	#5;
+	trmt = 1;
+	#5;
+	trmt = 0; 
+	#(10*7000)
 
+	$stop;
 end
 
 always #1 clk = ~clk;

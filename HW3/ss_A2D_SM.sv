@@ -14,11 +14,13 @@ module ss_A2D_SM(clk,rst_n,strt_cnv,smp_eq_8,gt,clr_dac,inc_dac,
   output logic cnv_cmplt;			// indicates when the conversion is complete
 
   ////////////////////////////////////////
-  // You fill in the SM implementation //
+  /////////SM implementation ////////////
   //////////////////////////////////////
   typedef enum reg [1:0] {IDLE,CONV,ACCUM} state_t;
   state_t state, nxt_state;
 
+
+// NEXT STATE FLOP
   always_ff @(posedge clk, negedge rst_n) begin
     if(!rst_n) begin
       state <= IDLE;
@@ -27,6 +29,8 @@ module ss_A2D_SM(clk,rst_n,strt_cnv,smp_eq_8,gt,clr_dac,inc_dac,
   end
   end
 
+
+// STATE MACHINE LOGIC
   always_comb begin 
     //reset signals
     clr_dac = 1'b0; 
