@@ -1,8 +1,9 @@
 module UART_tx_tb ();
 
-	logic clk, rst_n, trmt;
-	logic [7:0] tx_data;
-	logic TX, tx_done; 
+//stimuli 
+logic clk, rst_n, trmt;
+logic [7:0] tx_data;
+logic TX, tx_done; 
 
 
 //instantiate UART_TX DUT
@@ -13,7 +14,7 @@ UART_tx  iDUT(.clk(clk),
 	.TX(TX), 
 	.tx_done(tx_done));
 
-
+// sending two bytes back to back and verifying with the waveform
 initial begin
 	rst_n = 0;
 	clk = 0;
@@ -26,14 +27,14 @@ initial begin
 	trmt = 1;
 	#5;
 	trmt = 0; 
-	#(10*7000)
+	#(70000)
 	rst_n = 1; 
 	tx_data = 8'b01111011;
 	#5;
 	trmt = 1;
 	#5;
 	trmt = 0; 
-	#(10*7000)
+	#(70000)
 
 	$stop;
 end

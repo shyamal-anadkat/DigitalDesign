@@ -1,3 +1,4 @@
+/* Shyamal Anadkat - UART Transmitter - ECE 551 */
 module UART_tx (clk, rst_n, trmt, tx_data, TX, tx_done);
 
 //////////////////////////////////////////////////////////////////////
@@ -16,7 +17,7 @@ typedef enum reg[1:0] {IDLE, TRANS, DONE} state_t;
 state_t state, nxt_state;
 //////////////////////////////////////////////////////////////////////
 
-// shift module on the right (DONE)
+// shift module on the right driven by load and shift signals
 always_ff @(posedge clk, negedge rst_n) begin 
 	if(~rst_n) begin
 		tx_shft_reg <= 10'h001; 
@@ -29,7 +30,8 @@ end
 assign TX = tx_shft_reg[0];
 
 
-// baud_cnt blob in the middle (DONE except OR)
+// baud_cnt blob in the middle
+// increment baud cnt when transmitting
 always_ff @(posedge clk) begin 
 	if(load || shift) begin
 		baud_cnt <= 12'h000;
@@ -38,10 +40,10 @@ always_ff @(posedge clk) begin
 	end
 end
 
-//shift every 2604 clock cycles
+//assert shift at every 2604 clock cycles (baud rate)
 assign shift = (baud_cnt == 2604);
 
-// bit_cnt FF on the left
+// bit_cnt FF, driven by load and shift
 always_ff @(posedge clk) begin 
 	if(load) begin
 		bit_cnt <= 4'b0000;
@@ -75,6 +77,8 @@ always_ff @(posedge clk, negedge rst_n) begin
 end
 
 always_comb begin
+	
+	//reset SM signals 
 	set_done = 1'b0;
 	clr_done = 1'b0;
 	load = 1'b0;
@@ -82,6 +86,7 @@ always_comb begin
 
 	case(state)
 		IDLE:
+		//go to transmitting if trmt asserted
 		if(trmt) begin
 			nxt_state = TRANS;
 			clr_done = 1'b1;
@@ -94,6 +99,7 @@ always_comb begin
 		end
 
 		TRANS:
+		//done if one shifted, else still transmitting
 		if(shift) begin
 			transmitting = 1'b1;
 			nxt_state = DONE;
@@ -103,6 +109,7 @@ always_comb begin
 			transmitting = 1'b1;
 		end
 		DONE:
+		//set done and idle if 10 bits transmitted
 		if(bit_cnt == 4'b1010) begin
 			set_done = 1'b1;
 			nxt_state = IDLE;

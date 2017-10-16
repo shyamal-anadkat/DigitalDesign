@@ -1,3 +1,4 @@
+/* Shyamal Anadkat - UART Receiver - ECE 551 */
 module UART_rcv (clk, rst_n, RX, clr_rdy, rdy, cmd);
 
 //////////////////////////////////////////////////////////////////////
@@ -18,12 +19,15 @@ typedef enum reg {IDLE, RCV} rcv_state;
 rcv_state state, nxt_state;
 //////////////////////////////////////////////////////////////////////
 
+/*INTERNAL SIGNALS*/
 logic RX_ff1, RX_ff2;
-logic set_rdy, load, shift, is_rcv, clr_baud;
+logic set_rdy, start, shift, is_rcv, clr_baud;
 logic strt;
 logic [3:0] bit_cnt;
 logic [9:0] rx_shft_reg;
 logic [11:0] baud_cnt;
+
+//////////////////////////////////////////////////////////////////////
 
 //double flop RX  - metastability
 always_ff @(posedge clk, negedge rst_n) begin 
@@ -37,11 +41,11 @@ always_ff @(posedge clk, negedge rst_n) begin
 end
 
 
-// rdy signal flop
+// rdy and clr_rdy signal flop
 always_ff @(posedge clk, negedge rst_n) begin
 	if(~rst_n) begin
 		rdy <= 0;
-	end else if(clr_rdy || load) begin
+	end else if(clr_rdy || start) begin
 		rdy <= 0;
 	end else if(set_rdy) begin
 		rdy <= 1;
@@ -51,16 +55,16 @@ end
 
 //bit_cnt logic (same as tx)
 always_ff @(posedge clk) begin 
-	if(load) begin
+	if(start) begin
 		bit_cnt <= 4'h0;
 	end else if(shift) begin
 		bit_cnt <= bit_cnt + 1;
 	end
 end
 
-//baud rate counter - 2604 (12 bit).
+//baud rate counter driven by start, is_rcv, and clr_baud signals
 always_ff @(posedge clk) begin 
-	if(load) begin
+	if(start) begin
 		baud_cnt <= 12'h000;
 	end else if(clr_baud) begin
 		baud_cnt <= 12'h000;
@@ -73,12 +77,10 @@ assign shift = (baud_cnt == 1302);    //sample at middle
 assign clr_baud = (baud_cnt == 2604); //clr when another bit
 
 
-// Shifter logic which is driven by load, shift.
+//shifter logic which is driven by the shift signal
 always_ff @(posedge clk, negedge rst_n) begin 
 	if(~rst_n) begin
-		rx_shft_reg <= 10'h000; 
-	end else if(load) begin
-		rx_shft_reg <= 10'h000;
+		rx_shft_reg <= 10'h3FF; 
 	end else if(shift) begin
 		rx_shft_reg <= {RX_ff2, rx_shft_reg[9:1]};
 	end
@@ -89,6 +91,7 @@ assign cmd = rx_shft_reg[8:1];
 //STATE MACHINE LOGIC 
 //////////////////////////////////////////////////////////////////////
 
+//next state flop logic
 always_ff @(posedge clk, negedge rst_n) begin
 	if(!rst_n) begin
 		state <= IDLE;
@@ -97,23 +100,26 @@ always_ff @(posedge clk, negedge rst_n) begin
 	end
 end
 
-
 always_comb begin 
-	load = 1'b0;
+
+	// reset-signals 
+	start = 1'b0;
 	is_rcv = 1'b0;
 	set_rdy = 1'b0;
 	nxt_state = IDLE;
 
 	case(state)
 		IDLE: begin
+			//go to RCV on start bit
 			if(!RX_ff2) begin
 				nxt_state = RCV;
-				load = 1'b1;
+				start = 1'b1;
 			end else begin
 				nxt_state = IDLE;
 			end
 		end
 		RCV: begin
+			// stay in RCV till 10 bits poured through
 			if(bit_cnt == 4'b1010) begin
 				nxt_state = IDLE;
 				set_rdy = 1'b1;
