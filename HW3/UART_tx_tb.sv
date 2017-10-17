@@ -22,7 +22,7 @@ initial begin
 	tx_data = 0;
 	#5;
 	rst_n = 1;
-	tx_data = 8'b10101010;
+	tx_data = 8'haa;
 	#5;
 	trmt = 1;
 	#5;

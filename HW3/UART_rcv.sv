@@ -1,4 +1,5 @@
 /* Shyamal Anadkat - UART Receiver - ECE 551 */
+
 module UART_rcv (clk, rst_n, RX, clr_rdy, rdy, cmd);
 
 //////////////////////////////////////////////////////////////////////
@@ -22,10 +23,10 @@ rcv_state state, nxt_state;
 /*INTERNAL SIGNALS*/
 logic RX_ff1, RX_ff2;
 logic set_rdy, start, shift, is_rcv, clr_baud;
-logic strt;
 logic [3:0] bit_cnt;
 logic [9:0] rx_shft_reg;
 logic [11:0] baud_cnt;
+logic clr_rdy_fsm;
 
 //////////////////////////////////////////////////////////////////////
 
@@ -43,9 +44,11 @@ end
 
 // rdy and clr_rdy signal flop
 always_ff @(posedge clk, negedge rst_n) begin
-	if(~rst_n) begin
+	if(clr_rdy) begin
 		rdy <= 0;
-	end else if(clr_rdy || start) begin
+	end else if(!rst_n) begin
+		rdy <= 0;
+	end else if(clr_rdy_fsm) begin
 		rdy <= 0;
 	end else if(set_rdy) begin
 		rdy <= 1;
@@ -73,13 +76,13 @@ always_ff @(posedge clk) begin
 	end
 end
 
-assign shift = (baud_cnt == 1302);    //sample at middle
-assign clr_baud = (baud_cnt == 2604); //clr when another bit
+assign shift = (baud_cnt == 12'd1302);    //sample at middle
+assign clr_baud = (baud_cnt == 12'd2604); //clr when another bit
 
 
 //shifter logic which is driven by the shift signal
 always_ff @(posedge clk, negedge rst_n) begin 
-	if(~rst_n) begin
+	if(!rst_n || start) begin
 		rx_shft_reg <= 10'h3FF; 
 	end else if(shift) begin
 		rx_shft_reg <= {RX_ff2, rx_shft_reg[9:1]};

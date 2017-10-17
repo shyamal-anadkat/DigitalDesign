@@ -1,17 +1,17 @@
 module ss_A2D_SM(clk,rst_n,strt_cnv,smp_eq_8,gt,clr_dac,inc_dac,
  clr_smp,inc_smp,accum,cnv_cmplt);
 
-  input clk,rst_n;			// clock and asynch reset
+  input clk,rst_n;		// clock and asynch reset
   input strt_cnv;			// asserted to kick off a conversion
   input smp_eq_8;			// from datapath, tells when we have 8 samples
-  input gt;					// gt signal, has to be double flopped
+  input gt;					  // gt signal, has to be double flopped
   
   output logic clr_dac;			// clear the input counter to the DAC
   output logic inc_dac;			// increment the counter to the DAC
   output logic clr_smp;			// clear the sample counter
   output logic inc_smp;			// increment the sample counter
   output logic accum;				// asserted to make accumulator accumulate sample
-  output logic cnv_cmplt;			// indicates when the conversion is complete
+  output logic cnv_cmplt;		// indicates when the conversion is complete
 
   ////////////////////////////////////////
   /////////SM implementation ////////////
@@ -20,18 +20,18 @@ module ss_A2D_SM(clk,rst_n,strt_cnv,smp_eq_8,gt,clr_dac,inc_dac,
   state_t state, nxt_state;
 
 
-// NEXT STATE FLOP
-  always_ff @(posedge clk, negedge rst_n) begin
-    if(!rst_n) begin
-      state <= IDLE;
-    end else begin
+// NEXT STATE FLOP //
+always_ff @(posedge clk, negedge rst_n) begin
+  if(!rst_n) begin
+    state <= IDLE;
+  end else begin
     state <= nxt_state;
   end
-  end
+end
 
 
-// STATE MACHINE LOGIC
-  always_comb begin 
+// STATE MACHINE LOGIC //
+always_comb begin 
     //reset signals
     clr_dac = 1'b0; 
     inc_dac = 1'b0; 

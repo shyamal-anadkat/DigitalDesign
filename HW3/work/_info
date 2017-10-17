@@ -10,7 +10,7 @@ cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 vcnt4
 Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z1 !s110 1508186847
+Z1 !s110 1508213000
 !i10b 1
 !s100 :R?6I=Q9e0G6F=AdQUBnZ3
 IIORGVO2A1;i@_o>=RbWET2
@@ -26,7 +26,7 @@ Z4 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z5 !s108 1508186847.000000
+Z5 !s108 1508213000.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/cnt4.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/cnt4.sv|
 !s101 -O0
@@ -42,7 +42,7 @@ R2
 !s105 ESC_interface_sv_unit
 S1
 R3
-w1507736243
+w1508212914
 8C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
 FC:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
 L0 1
@@ -67,7 +67,7 @@ R2
 !s105 ESC_test_sv_unit
 S1
 R3
-w1507735322
+w1508212837
 8C:/Users/zosta/OneDrive/ECE551/HW3/ESC_test.sv
 FC:/Users/zosta/OneDrive/ECE551/HW3/ESC_test.sv
 L0 1
@@ -84,7 +84,7 @@ R6
 n@e@s@c_test
 vPB_release
 R0
-R1
+Z7 !s110 1508213001
 !i10b 1
 !s100 U[3ZPi0=o:C<U>3IN=DYN1
 I3H4`X5a:_=L51Za=C:LEW1
@@ -131,14 +131,39 @@ R5
 !s101 -O0
 !i113 1
 R6
+vSAMPLE_TEST_UART
+R0
+Z8 !s110 1508213012
+!i10b 1
+!s100 4iGTE]Cgd>VP`0`1DiH_W0
+IScGbZQPngk7eEj_Id_ETD0
+R2
+!s105 SAMPLE_TEST_UART_sv_unit
+S1
+R3
+w1508205368
+8C:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv
+FC:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv
+L0 8
+R4
+r1
+!s85 0
+31
+Z9 !s108 1508213012.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv|
+!s101 -O0
+!i113 1
+R6
+n@s@a@m@p@l@e_@t@e@s@t_@u@a@r@t
 vss_A2D
-R1
+R7
 !i10b 1
 !s100 iI4[IHbbC?D4<TP@K8Uan0
 I`EZaF]FU[R21`3P8]2M^f2
 R2
 R3
-Z7 w1507127992
+Z10 w1507127992
 8C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D.v
 FC:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D.v
 L0 1
@@ -146,21 +171,21 @@ R4
 r1
 !s85 0
 31
-R5
+Z11 !s108 1508213001.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D.v|
 !s101 -O0
 !i113 1
-Z8 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+Z12 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
 nss_@a2@d
 vss_A2D_datapath
-Z9 !s110 1508186848
+R7
 !i10b 1
 !s100 `6JhgMhkW8gHk<H7?SL2G0
 Ik_d;MlzgTm^OBP71m1E6a2
 R2
 R3
-R7
+R10
 8C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v
 FC:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v
 L0 1
@@ -168,16 +193,16 @@ R4
 r1
 !s85 0
 31
-R5
+R11
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_datapath.v|
 !s101 -O0
 !i113 1
-R8
+R12
 nss_@a2@d_datapath
 vss_A2D_SM
 R0
-R1
+R7
 !i10b 1
 !s100 Pazc2Rjek>[E6UnbNbf:_1
 IKM;0]^4;18OMnn4?oQR4S3
@@ -185,7 +210,7 @@ R2
 !s105 ss_A2D_SM_sv_unit
 S1
 R3
-w1508021408
+w1508212991
 8C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv
 FC:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv
 L0 1
@@ -193,7 +218,7 @@ R4
 r1
 !s85 0
 31
-R5
+R11
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv|
 !s101 -O0
@@ -201,13 +226,13 @@ R5
 R6
 nss_@a2@d_@s@m
 vss_A2D_tb
-R1
+R7
 !i10b 1
 !s100 Z5Kbk:7chaz`6_2^>;>Za0
 Ih<X?n<Hfdca2[]]<B[2kG2
 R2
 R3
-R7
+R10
 8C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v
 FC:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v
 L0 1
@@ -215,99 +240,147 @@ R4
 r1
 !s85 0
 31
-R5
+R11
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_tb.v|
 !s101 -O0
 !i113 1
-R8
+R12
 nss_@a2@d_tb
 vUART_rcv
 R0
-R9
+R8
 !i10b 1
-!s100 5c<2<Ze@b5k<D9`ED]XgM3
-IfE7d=IBj8GhcTW=<Q1:]]2
+!s100 iBb1fQ7IP?eAVW7j>g2l_0
+I>OU_PSeBbGLzfko;W?<1^0
 R2
 !s105 UART_rcv_sv_unit
 S1
 R3
-w1508185893
+w1508212556
 8C:/Users/zosta/OneDrive/ECE551/HW3/UART_rcv.sv
 FC:/Users/zosta/OneDrive/ECE551/HW3/UART_rcv.sv
-L0 2
+L0 3
 R4
 r1
 !s85 0
 31
-Z10 !s108 1508186848.000000
+R9
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_rcv.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_rcv.sv|
 !s101 -O0
 !i113 1
 R6
 n@u@a@r@t_rcv
-vUART_tb
+vuart_rcv_tb
 R0
-R9
+!s110 1508191729
 !i10b 1
-!s100 ZQ4D<YDiXeM^9Mfj?]zEz2
-IHIo_>`o>CK4DLoeTHS=K@0
+!s100 QbZdnSZb44a95Vh0S[V>l3
+If9NXUOIbOgK:ai8_lm5fj3
 R2
-!s105 UART_tb_sv_unit
+Z13 !s105 UART_tb_sv_unit
 S1
 R3
-w1508186829
-8C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv
-FC:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv
+w1508191648
+Z14 8C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv
+Z15 FC:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv
+L0 3
+R4
+r1
+!s85 0
+31
+!s108 1508191729.000000
+Z16 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv|
+Z17 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv|
+!s101 -O0
+!i113 1
+R6
+vUART_tb
+R0
+R8
+!i10b 1
+!s100 ObeWf<;GkFK8Y=61SjY343
+IJoLeFLiN@02B7BEjThEhj0
+R2
+R13
+S1
+R3
+w1508212826
+R14
+R15
 L0 2
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_tb.sv|
+R9
+R16
+R17
 !s101 -O0
 !i113 1
 R6
 n@u@a@r@t_tb
-vUART_tx
+vuart_trans
 R0
-R9
+!s110 1508210962
 !i10b 1
-!s100 ;LRRi[zeK[6jeV8Y7EioI2
-Im>Md2kFY>kZi>>626WO5M3
+!s100 ^8ZOmA8L^ReNziQTc<WgZ0
+I99=KhBKCg9[bK_DM<kQ3D2
 R2
-!s105 UART_tx_sv_unit
+Z18 !s105 UART_tx_sv_unit
 S1
 R3
-w1508185886
-8C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv
-FC:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv
-L0 2
+w1508210948
+Z19 8C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv
+Z20 FC:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv
+L0 8
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv|
+!s108 1508210962.000000
+Z21 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv|
+Z22 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx.sv|
+!s101 -O0
+!i113 1
+R6
+vUART_tx
+R0
+!s110 1508213008
+!i10b 1
+!s100 kQ=zV8:b`3HI5XgeNnElA3
+I<=LbOJ332S=NcZMka?@dk0
+R2
+R18
+S1
+R3
+w1508212831
+R19
+R20
+L0 3
+R4
+r1
+!s85 0
+31
+!s108 1508213008.000000
+R21
+R22
 !s101 -O0
 !i113 1
 R6
 n@u@a@r@t_tx
 vUART_tx_tb
 R0
-R9
+!s110 1508213003
 !i10b 1
-!s100 ?f3iFIZVWHXPkPcdbaId;0
-IX^hE:2WbZQ2FY[e>@l[nE3
+!s100 8nKYXnY5c@?@5AfBUTQk^1
+IgH;S5]77ToQeKhKh2JHV?1
 R2
 !s105 UART_tx_tb_sv_unit
 S1
 R3
-w1508183787
+w1508212619
 8C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv
 FC:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv
 L0 1
@@ -315,7 +388,7 @@ R4
 r1
 !s85 0
 31
-R10
+!s108 1508213002.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv|
 !s101 -O0
