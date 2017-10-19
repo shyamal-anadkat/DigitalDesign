@@ -26,6 +26,13 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	PB_release
 
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ESC_interface.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ESC_interface
+
+Top level modules:
+	ESC_interface
+
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/SAMPLE_TEST_UART.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module SAMPLE_TEST_UART
@@ -67,6 +74,13 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	cnt4
+
+} {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/ss_A2D_SM.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ss_A2D_SM
+
+Top level modules:
+	ss_A2D_SM
 
 } {} {}} C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv {1 {vlog -work work -sv -stats=none C:/Users/zosta/OneDrive/ECE551/HW3/UART_tx_tb.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
