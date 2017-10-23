@@ -1,0 +1,22 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : M-2016.12
+// Date      : Sun Oct 22 14:17:12 2017
+/////////////////////////////////////////////////////////////
+
+
+module UART ( clk, rst_n, RX, TX, rx_rdy, clr_rx_rdy, rx_data, trmt, tx_data, 
+        tx_done );
+  output [7:0] rx_data;
+  input [7:0] tx_data;
+  input clk, rst_n, RX, clr_rx_rdy, trmt;
+  output TX, rx_rdy, tx_done;
+  wire   n1;
+
+  UART_tx iTX ( .clk(clk), .rst_n(n1), .trmt(trmt), .tx_data(tx_data), .TX(TX), 
+        .tx_done(tx_done) );
+  UART_rcv iRX ( .clk(clk), .rst_n(n1), .RX(RX), .clr_rdy(clr_rx_rdy), .rdy(
+        rx_rdy), .rx_data(rx_data) );
+  CKBD1BWP U1 ( .I(rst_n), .Z(n1) );
+endmodule
+

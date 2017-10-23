@@ -1,0 +1,119 @@
+/* Shyamal Anadkat - UART Transmitter - ECE 551 */
+
+module UART_tx (clk, rst_n, trmt, tx_data, TX, tx_done);
+
+//////////////////////////////////////////////////////////////////////
+input logic clk, rst_n, trmt; //100MHz system clock & active low reset
+input logic [7:0] tx_data;    //Byte to transmit (response from LA)
+output logic tx_done;         //Assert w/ byte dn trnsmt.Stay high till nxt byte trnsmt.
+output logic TX;      		  //Serial data output back to host
+
+logic load, shift, transmitting; //state machine signals
+logic [3:0] bit_cnt; 
+logic [11:0] baud_cnt;
+logic [9:0] tx_shft_reg;
+logic set_done, clr_done;
+
+localparam BAUDRATE = 12'd2604;
+typedef enum reg[1:0] {IDLE, TRANS} state_t;
+state_t state, nxt_state;
+//////////////////////////////////////////////////////////////////////
+
+
+
+//assert shift at every 2604-1 clock cycles
+assign shift = (baud_cnt == (BAUDRATE-1));
+
+// shift module on the right driven by load and shift signals
+always_ff @(posedge clk or negedge rst_n) begin 
+	if(!rst_n) begin
+		tx_shft_reg <= 10'h000;
+	end else if(load) begin
+		tx_shft_reg <= {1'b1, tx_data, 1'b0};
+	end else if(shift) begin
+		tx_shft_reg <= {1'b1, tx_shft_reg[9:1]}; //right shift
+	end
+end
+assign TX = tx_shft_reg[0];
+
+
+// baud_cnt blob in the middle
+// increment baud cnt when transmitting
+always_ff @(posedge clk) begin 
+	if(load | shift) begin
+		baud_cnt <= 12'h000;
+	end else if(transmitting) begin
+		baud_cnt <= baud_cnt + 1; 
+	end
+end
+
+// bit_cnt FF, driven by load and shift
+always_ff @(posedge clk) begin 
+	if(load) begin
+		bit_cnt <= 4'b0000;
+	end else if(shift) begin
+		bit_cnt <= bit_cnt + 1;
+	end
+end
+
+//tx_done SR flip flop 
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		tx_done <= 1'b1;
+	else if (set_done) 
+		tx_done <= 1'b1;
+	else if (clr_done)
+		tx_done <= 1'b0;
+end
+
+//////////////////////////////////////////////////////////////////////
+//STATE MACHINE LOGIC 
+//////////////////////////////////////////////////////////////////////
+
+//next state logic latch
+always_ff @(posedge clk or negedge rst_n) begin
+	if(!rst_n) begin
+		state <= IDLE;
+	end else begin
+		state <= nxt_state;
+	end
+end
+
+always_comb begin
+
+	//reset SM signals 
+	set_done = 1'b0;
+	clr_done = 1'b0;
+	load = 1'b0;
+	transmitting = 1'b0; 
+	nxt_state = IDLE;
+
+	case(state)
+
+		IDLE:
+		//go to transmitting if trmt asserted
+		if(trmt) begin
+			nxt_state = TRANS;
+			clr_done = 1'b1;
+			load = 1'b1;
+			transmitting = 1'b1;
+		end
+		else begin 
+			nxt_state = IDLE;
+			set_done = 1'b1;
+		end
+
+		TRANS:
+		//set done and idle if 10 bits transmitted
+		if(bit_cnt == 4'd10) begin
+			set_done = 1'b1;
+			nxt_state = IDLE;
+		end
+		else begin
+			transmitting = 1'b1;
+			nxt_state = TRANS;
+		end
+
+	endcase // state
+end
+endmodule
