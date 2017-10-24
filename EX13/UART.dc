@@ -5,7 +5,7 @@
 ##########################
 # Files to read - seperated by space #
 ##########################
-read_file -format sverilog {./UART_tx.sv ./UART_rcv.sv ./UART.v}
+read_file -format sverilog {./UART_tx.v ./UART_rcv.sv ./UART.v}
 
 ##########################
 ## Set current design to UART and link ###
@@ -50,7 +50,8 @@ set_wire_load_model -name TSMC32K_Lowk_Conservative \
 #########################
 # Now actually synthesize for 1st time #
 #########################
-compile -map_effort medium
+set current_design UART
+compile
 check_design
 
 #########################
@@ -67,6 +68,7 @@ report_area > UART_area.txt
 ## smash the hierarchy (design ware component)
 #########################
 ungroup -all
-compile -map_effort medium
+set current_design UART
+compile
 check_design
 report_area > UART_area_smashed.txt

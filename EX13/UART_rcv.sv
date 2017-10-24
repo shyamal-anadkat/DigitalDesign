@@ -1,142 +1,132 @@
-/* Shyamal Anadkat - UART Receiver - ECE 551 */
+module UART_rcv(clk,rst_n,RX,rdy,rx_data,clr_rdy);
 
-module UART_rcv (clk, rst_n, RX, clr_rdy, rdy, rx_data);
+input clk,rst_n;			// clock and active low reset
+input RX;					// rx is the asynch serial input (need to double flop)
+input clr_rdy;			// rdy can be cleared by this or start of new byte
+output rdy;				// signifies to core a byte has been received
+output [7:0] rx_data;		// data that was received
 
-//////////////////////////////////////////////////////////////////////
-input logic clk, rst_n; //100MHz system clock & active low reset
-input logic RX;         //Serial data carrying command from host computer
+//// Define state as enumerated type /////
+typedef enum reg {IDLE, RX_STATE} state_t;
+state_t state, nxt_state;
 
-//Asserted to knock down the rdy signal. 
-input logic clr_rdy;
+reg [8:0] shift_reg;		// shift reg (9-bits), MSB will contain stop bit when finished
+reg [3:0] bit_cnt;			// bit counter (need extra bit for stop bit)
+reg [11:0] baud_cnt;			// baud rate counter (50MHz/19200) = div of 2604
+reg rdy;					// implemented as a flop
+reg rx_ff1, rx_ff2;			// back to back flops for meta-stability
 
-//Asserted when a byte has been received. Falls
-//when new start bit comes, or when clr_rdy knocks
-//it down.
-output logic rdy;
-output logic [7:0] rx_data;  //Byte received (serves as command to LA)
+logic start, set_rdy, receiving;		// using type logic for outputs of SM
 
-//state machine
-typedef enum reg {IDLE, RCV} rcv_state;
-rcv_state state, nxt_state;
-//////////////////////////////////////////////////////////////////////
+wire shift;
 
-/*INTERNAL SIGNALS*/
-logic RX_ff1, RX_ff2;
-logic set_rdy, start, shift, is_rcv, clr_baud;
-logic [3:0] bit_cnt;
-logic [9:0] rx_shft_reg;
-logic [11:0] baud_cnt;
-logic clr_rdy_fsm;
+////////////////////////////
+// Infer state flop next //
+//////////////////////////
+always_ff @(posedge clk or negedge rst_n)
+  if (!rst_n)
+    state <= IDLE;
+  else
+    state <= nxt_state;
 
-//////////////////////////////////////////////////////////////////////
+/////////////////////////
+// Infer bit_cnt next //
+///////////////////////
+always_ff @(posedge clk or negedge rst_n)
+  if (!rst_n)
+    bit_cnt <= 4'b0000;
+  else if (start)
+    bit_cnt <= 4'b0000;
+  else if (shift)
+    bit_cnt <= bit_cnt+1;
 
-//double flop RX  - metastability
-always_ff @(posedge clk, negedge rst_n) begin 
-	if(~rst_n) begin
-		RX_ff1 <= 1'b0;
-		RX_ff2 <= 1'b0;
-	end else begin
-		RX_ff1 <= RX;
-		RX_ff2 <= RX_ff1;
-	end
-end
+//////////////////////////
+// Infer baud_cnt next //
+////////////////////////
+always_ff @(posedge clk or negedge rst_n)
+  //// shift is asserted when baud_cnt is 111_1111 ////
+  if (!rst_n)
+    baud_cnt <= 1302;			// start 1/2 way to zero for div of 2604
+  else if (start)
+    baud_cnt <= 1302;			// start 1/2 way to zero for div of 2604
+  else if (shift)
+    baud_cnt <= 2604;			// reset when baud count is full value for 19200 baud with 50MHz clk
+  else if (receiving)
+    baud_cnt <= baud_cnt-1;		// only burn power incrementing if transmitting
 
+////////////////////////////////
+// Infer shift register next //
+//////////////////////////////
+always_ff @(posedge clk)
+  if (shift)
+    shift_reg <= {rx_ff2,shift_reg[8:1]};   // LSB comes in first
 
-// rdy and clr_rdy signal flop
-always_ff @(posedge clk, negedge rst_n) begin
-	if(!rst_n) begin
-		rdy <= 0;
-	end else if(clr_rdy == 1'b1) begin
-		rdy <= 0;
-	end else if(clr_rdy_fsm) begin
-		rdy <= 0;
-	end else if(set_rdy) begin
-		rdy <= 1;
-	end
-end
+/////////////////////////////////////////////
+// rdy will be implemented with a flop //
+///////////////////////////////////////////
+always @(posedge clk or negedge rst_n)
+  if (!rst_n)
+    rdy <= 1'b0;
+  else if (start || clr_rdy)
+    rdy <= 1'b0;			// knock down rdy when new start bit detected
+  else if (set_rdy)
+    rdy <= 1'b1;
 
+////////////////////////////////////////////////
+// RX is asynch, so need to double flop      //
+// prior to use for meta-stability purposes //
+/////////////////////////////////////////////
+always_ff @(posedge clk or negedge rst_n)
+  if (!rst_n)
+    begin
+      rx_ff1 <= 1'b1;			// reset to idle state
+      rx_ff2 <= 1'b1;
+    end
+  else
+    begin
+      rx_ff1 <= RX;
+      rx_ff2 <= rx_ff1;
+    end
 
-//bit_cnt logic (same as tx)
-always_ff @(posedge clk) begin 
-	if(start) begin
-		bit_cnt <= 4'h0;
-	end else if(shift) begin
-		bit_cnt <= bit_cnt + 1;
-	end
-end
+//////////////////////////////////////////////
+// Now for hard part...State machine logic //
+////////////////////////////////////////////
+always_comb
+  begin
+    //////////////////////////////////////
+    // Default assign all output of SM //
+    ////////////////////////////////////
+    start         = 0;
+    set_rdy    = 0;
+    receiving     = 0;
+    nxt_state     = IDLE;	// always a good idea to default to IDLE state
+    
+    case (state)
+      IDLE : begin
+        if (!rx_ff2)		// did fall of start bit occur?
+          begin
+            nxt_state = RX_STATE;
+            start = 1;
+          end
+        else nxt_state = IDLE;
+      end
+      default : begin		// this is RX state
+        if (bit_cnt==4'b1010)
+          begin
+            set_rdy = 1;
+            nxt_state = IDLE;
+          end
+        else
+          nxt_state = RX_STATE;
+        receiving = 1;
+      end
+    endcase
+  end
 
-//baud rate counter driven by start, is_rcv, and clr_baud signals
-always_ff @(posedge clk) begin 
-	if(start) begin
-		baud_cnt <= 12'h000;
-	end else if(clr_baud) begin
-		baud_cnt <= 12'h000;
-	end else if(is_rcv) begin
-		baud_cnt <= baud_cnt + 1; 
-	end
-end
-
-assign shift = (baud_cnt == 12'd1302);    //sample at middle
-assign clr_baud = (baud_cnt == 12'd2604); //clr when another bit
-
-
-//shifter logic which is driven by the shift signal
-always_ff @(posedge clk, negedge rst_n) begin 
-	if(!rst_n) begin
-		rx_shft_reg <= 10'h3FF; 
-	end else if(start) begin
-		rx_shft_reg <= 10'h3FF; 
-	end else if(shift) begin
-		rx_shft_reg <= {RX_ff2, rx_shft_reg[9:1]};
-	end
-end
-assign rx_data = rx_shft_reg[8:1];
-
-//////////////////////////////////////////////////////////////////////
-//STATE MACHINE LOGIC 
-//////////////////////////////////////////////////////////////////////
-
-//next state flop logic
-always_ff @(posedge clk, negedge rst_n) begin
-	if(!rst_n) begin
-		state <= IDLE;
-	end else begin
-		state <= nxt_state;
-	end
-end
-
-always_comb begin 
-
-	// reset-signals 
-	start = 1'b0;
-	is_rcv = 1'b0;
-	set_rdy = 1'b0;
-	nxt_state = IDLE;
-
-	case(state)
-		IDLE: begin
-			//go to RCV on start bit
-			if(!RX_ff2) begin
-				nxt_state = RCV;
-				start = 1'b1;
-			end else begin
-				nxt_state = IDLE;
-			end
-		end
-		RCV: begin
-			// stay in RCV till 10 bits poured through
-			if(bit_cnt == 4'b1010) begin
-				nxt_state = IDLE;
-				set_rdy = 1'b1;
-			end else begin
-				is_rcv = 1'b1;
-				nxt_state = RCV;
-			end
-		end
-		default:
-		nxt_state = IDLE;
-		
-	endcase // state
-end
+///////////////////////////////////
+// Continuous assignment follow //
+/////////////////////////////////
+assign shift = ~|baud_cnt; 						// shift wen baud_cnt is zero
+assign rx_data = shift_reg[7:0];				// MSB of shift reg is stop bit
 
 endmodule
