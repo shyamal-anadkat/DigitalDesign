@@ -37,7 +37,7 @@ wire signed [9:0] ptch_pterm, yaw_pterm, roll_pterm;
 wire signed [11:0] ptch_dterm, yaw_dterm, roll_dterm;
 
 wire signed [5:0] ptch_D_diff_sat, roll_D_diff_sat, yaw_D_diff_sat;
-wire [12:0] frnt_spd_sum, back_spd_sum, left_spd_sum, right_spd_sum;
+wire signed [12:0] frnt_spd_sum, back_spd_sum, left_spd_sum, right_spd_sum;
 wire [10:0] frnt_spd_sat, back_spd_sat, left_spd_sat, right_spd_sat;
 
 ///////////////////////////////////////////////////////////////
