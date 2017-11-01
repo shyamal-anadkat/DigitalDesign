@@ -76,26 +76,28 @@ assign yaw_err_sat = (yaw_err[16]) ?
 ((|yaw_err[15:9]) ? MAX_10: yaw_err[9:0]);
 
 //Shift on vld
-always_ff @(posedge clk, negedge rst_n)
-if (!rst_n)
+always_ff @(posedge clk, negedge rst_n)begin
+if (!rst_n) begin
 for (x = 0; x < D_QUEUE_DEPTH; x=x+1) begin
-	prev_ptch_err[x] = 10'h000;
-	prev_roll_err[x] = 10'h000;
-	prev_yaw_err[x] = 10'h000;
+	prev_ptch_err[x] <= 10'h000;
+	prev_roll_err[x] <= 10'h000;
+	prev_yaw_err[x] <= 10'h000;
+	end
 end
 else if (vld) begin
 	for (x = D_QUEUE_DEPTH-1; x > 0; x=x-1) begin
-		prev_ptch_err[x] = prev_ptch_err[x - 1];
-		prev_roll_err[x] = prev_roll_err[x - 1];
-		prev_yaw_err[x] = prev_yaw_err[x - 1];
+		prev_ptch_err[x] <= prev_ptch_err[x - 1];
+		prev_roll_err[x] <= prev_roll_err[x - 1];
+		prev_yaw_err[x] <= prev_yaw_err[x - 1];
 	end
-	prev_ptch_err[0] = ptch_err_sat;
-	prev_roll_err[0] = roll_err_sat;
-	prev_yaw_err[0] = yaw_err_sat;
+	prev_ptch_err[0] <= ptch_err_sat;
+	prev_roll_err[0] <= roll_err_sat;
+	prev_yaw_err[0] <= yaw_err_sat;
+end
 end
 
 //PTCH
-assign ptch_D_diff = prev_ptch_err[0] - prev_ptch_err[D_QUEUE_DEPTH-1];
+assign ptch_D_diff = ptch_err_sat - prev_ptch_err[D_QUEUE_DEPTH-1];
 //saturate ptch_D_Diff [9:0] 10 to 6 bits 
 assign ptch_D_diff_sat = (ptch_D_diff[9]) ?           
 ((&ptch_D_diff[8:6]) ? ptch_D_diff[5:0] : MIN_6) :     
@@ -107,7 +109,7 @@ assign ptch_pterm = ((ptch_err_sat >>> 1) + (ptch_err_sat >>> 3));
 
 
 //ROLL
-assign roll_D_diff = prev_roll_err[0] - prev_roll_err[D_QUEUE_DEPTH-1];
+assign roll_D_diff = roll_err_sat - prev_roll_err[D_QUEUE_DEPTH-1];
 assign roll_D_diff_sat = (roll_D_diff[9]) ?           
 ((&roll_D_diff[8:6]) ? roll_D_diff[5:0] : MIN_6) :     
 ((|roll_D_diff[8:6]) ? MAX_6 : roll_D_diff[5:0]);
@@ -116,7 +118,7 @@ assign roll_dterm = ($signed(D_COEFF) * roll_D_diff_sat);
 assign roll_pterm = ((roll_err_sat >>> 1) + (roll_err_sat >>> 3)); 
 
 //YAW
-assign yaw_D_diff  = prev_yaw_err[0] - prev_yaw_err[D_QUEUE_DEPTH-1];
+assign yaw_D_diff  = yaw_err_sat - prev_yaw_err[D_QUEUE_DEPTH-1];
 
 assign yaw_D_diff_sat = (yaw_D_diff[9]) ?           
 ((&yaw_D_diff[8:6]) ? yaw_D_diff[5:0] : MIN_6) :     

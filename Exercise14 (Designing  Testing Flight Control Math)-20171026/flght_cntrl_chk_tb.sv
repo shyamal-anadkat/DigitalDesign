@@ -53,13 +53,16 @@ $readmemh("flght_cntrl_stim.hex",stim_mem);
 $readmemh("flght_cntrl_resp.hex",expected_mem);
 
 clk = 0;
+//@(posedge clk);
 
 for(i = 0; i < 1000; i = i + 1) 
 begin 
-   
+   @(negedge clk);
    stim = stim_mem[i];
    @(posedge clk); //so that we are #1 afte clk rise.
+   //@(negedge clk);
    #1;
+   //#6;
 
 	if(response == expected_mem[i]) begin
 		$display("SUCCESS: i = %d , expected: %h and response: %h", 
@@ -69,6 +72,7 @@ begin
 			i, stim, expected_mem[i] , response);
 		//$stop();
 	end
+
 end
 
 
@@ -77,6 +81,6 @@ $stop();
 end
 
 always
-  #5 clk = ~clk;
+  #5 clk <= ~clk;
 
 endmodule
