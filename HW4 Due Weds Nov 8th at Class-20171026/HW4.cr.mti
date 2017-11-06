@@ -1,13 +1,4 @@
-{C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv} {2 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv}
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module SPI_mstr16_tb
-** Warning: C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv(30): (vlog-2252) Missing incrementer in "FOR" statement.
-
-
-Top level modules:
-	SPI_mstr16_tb
-
-} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv}
+{C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv}
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module SPI_ADC128S
 

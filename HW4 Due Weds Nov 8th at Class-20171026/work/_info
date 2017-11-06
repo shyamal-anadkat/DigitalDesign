@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/zosta/OneDrive/ECE551/Exercise14 (Designing  Testing Flight Control Math)-20171026
 vADC128S
 Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z1 !s110 1509941731
+Z1 !s110 1510004763
 !i10b 1
 !s100 0damBXUWz_8:HCk]^=0]c2
 Izb6[n_oOJX5PmC_o:e;Y80
@@ -26,7 +26,7 @@ Z5 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z6 !s108 1509941731.000000
+Z6 !s108 1510004763.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
 !s101 -O0
@@ -87,13 +87,13 @@ vSPI_mstr16
 R0
 R1
 !i10b 1
-!s100 >YXUUAA8I@07m[UnhBR4L0
-I9m?g^C`NRJbPgi:K1I^e?1
+!s100 MikSNW;lgemZh4Q;j;9gZ3
+IJM<]8Yc5KI?bCCSkcgn8C1
 R2
 R8
 S1
 R3
-w1509941726
+w1510004758
 R9
 R10
 L0 1
@@ -112,13 +112,13 @@ vSPI_mstr16_tb
 R0
 R1
 !i10b 1
-!s100 ML@P7WJTcgz3GU@dcgR402
-I9gieJC2fIYMej3^]9cg4m0
+!s100 H4C2:R]F@S57k?D>z:<9O1
+I_<6Rc^G[8S<@mDn]Gg>lN1
 R2
 !s105 SPI_mstr16_tb_sv_unit
 S1
 R3
-w1509940608
+w1510004574
 8C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv
 FC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv
 L0 1

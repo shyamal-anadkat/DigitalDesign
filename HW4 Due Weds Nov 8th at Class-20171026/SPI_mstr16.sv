@@ -14,12 +14,11 @@ logic [4:0] bit_cntr; //bit-cntr
 logic rst_cnt, shft,set_done;
 logic smpl, MISO_smpl;
 
-logic [1:0] state, nxt_state;
 
-localparam IDLE = 2'b00;
-localparam FRONT_PORCH = 2'b01;
-localparam BITS = 2'b10;
-localparam BACK_PORCH = 2'b11;
+
+typedef enum reg [1:0] {IDLE, FRONT_PORCH, BITS, BACK_PORCH} state_t;
+state_t state, nxt_state;
+
 
 
 //bit_cntr to know when we shifted 8 bits 
@@ -36,7 +35,7 @@ end
 //sclk div bit counter for the CLOCK
 always_ff @(posedge clk, negedge rst_n) begin
 	if(!rst_n)
-		sclk_div <= 5'b00000;
+		sclk_div <= 5'b10111;
 	else if(rst_cnt) 
 		sclk_div <= 5'b10111;
 	else
@@ -116,7 +115,6 @@ always_comb begin
 		FRONT_PORCH: begin
 			if(sclk_div == 5'b11111) begin
 				nxt_state = BITS;
-				shft = 1'b1;
 			end else begin
 				nxt_state = FRONT_PORCH;
 			end
@@ -140,6 +138,7 @@ always_comb begin
 			if(sclk_div == 5'b01111) begin
 				set_done = 1;
 				rst_cnt = 1;
+				shft = 1'b1;
 				nxt_state = IDLE;
 			end else begin
 				nxt_state = BACK_PORCH;
