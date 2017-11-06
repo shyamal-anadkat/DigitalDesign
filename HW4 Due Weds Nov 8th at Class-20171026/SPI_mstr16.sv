@@ -1,9 +1,9 @@
 module SPI_mstr16 (SS_n, SCLK, MOSI, done, rd_data, MISO, wrt, cmd, clk, rst_n);
 
-output logic SS_n, SCLK, MOSI,done;
-output logic [15:0] rd_data;
+	output logic SS_n, SCLK, MOSI,done;
+	output logic [15:0] rd_data;
 
-input clk, rst_n, MISO;
+	input clk, rst_n, MISO;
 input wrt;	//high for 1 clk period wld init a SPI transaction
 input [15:0] cmd;
 
@@ -67,8 +67,8 @@ always_ff @(posedge clk, negedge rst_n) begin
 end
 
 always_ff @(posedge clk) begin
-if(smpl)
-	MISO_smpl <= MISO;
+	if(smpl)
+		MISO_smpl <= MISO;
 end
 
 //rd_data flop (with optional else)
@@ -147,6 +147,6 @@ always_comb begin
 		end 
 		default: 
 		nxt_state = IDLE;
-	endcase // state
+endcase // state
 end
 endmodule
