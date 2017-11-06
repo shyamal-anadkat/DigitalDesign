@@ -1,0 +1,135 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/zosta/OneDrive/ECE551/Exercise14 (Designing  Testing Flight Control Math)-20171026
+vADC128S
+Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+Z1 !s110 1509941731
+!i10b 1
+!s100 0damBXUWz_8:HCk]^=0]c2
+Izb6[n_oOJX5PmC_o:e;Y80
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 ADC128S_sv_unit
+S1
+Z3 dC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026
+Z4 w1509066694
+8C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv
+FC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv
+L0 1
+Z5 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z6 !s108 1509941731.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
+!s101 -O0
+!i113 1
+Z7 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+n@a@d@c128@s
+vSPI_ADC128S
+R0
+R1
+!i10b 1
+!s100 ;E62=i88@ghW83DU@9;CK1
+IW:gYhjAZ3=1l78KCD?TKj3
+R2
+!s105 SPI_ADC128S_sv_unit
+S1
+R3
+R4
+8C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv
+FC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv|
+!s101 -O0
+!i113 1
+R7
+n@s@p@i_@a@d@c128@s
+vSPI_mstr
+R0
+!s110 1509934694
+!i10b 1
+!s100 TnzTFFe1F2VzbiHn0T<`]0
+I]QgNCg0HzY0RNH6?n:<2U0
+R2
+Z8 !s105 SPI_mstr16_sv_unit
+S1
+R3
+w1509934683
+Z9 8C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv
+Z10 FC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv
+L0 7
+R5
+r1
+!s85 0
+31
+!s108 1509934694.000000
+!s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv|
+Z11 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv|
+!s101 -O0
+!i113 1
+R7
+n@s@p@i_mstr
+vSPI_mstr16
+R0
+R1
+!i10b 1
+!s100 >YXUUAA8I@07m[UnhBR4L0
+I9m?g^C`NRJbPgi:K1I^e?1
+R2
+R8
+S1
+R3
+w1509941726
+R9
+R10
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv|
+R11
+!s101 -O0
+!i113 1
+R7
+n@s@p@i_mstr16
+vSPI_mstr16_tb
+R0
+R1
+!i10b 1
+!s100 ML@P7WJTcgz3GU@dcgR402
+I9gieJC2fIYMej3^]9cg4m0
+R2
+!s105 SPI_mstr16_tb_sv_unit
+S1
+R3
+w1509940608
+8C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv
+FC:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv|
+!s101 -O0
+!i113 1
+R7
+n@s@p@i_mstr16_tb
