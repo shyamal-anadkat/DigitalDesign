@@ -1,4 +1,22 @@
-{C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv}
+{C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_dbg_tb.v} {1 {vlog -work work -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_dbg_tb.v}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module flght_cntrl_dbg_tb
+
+Top level modules:
+	flght_cntrl_dbg_tb
+
+} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv} {2 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module SPI_mstr16_tb
+** Warning: C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv(48): (vlog-2252) Missing incrementer in "FOR" statement.
+
+** Warning: C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16_tb.sv(57): (vlog-2643) Unterminated string literal continues onto next line.
+
+
+Top level modules:
+	SPI_mstr16_tb
+
+} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_ADC128S.sv}
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module SPI_ADC128S
 
@@ -11,5 +29,26 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	ADC128S
+
+} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module flght_cntrl
+
+Top level modules:
+	flght_cntrl
+
+} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/module SPI_mstr16_tb_TA.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/module SPI_mstr16_tb_TA.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module SPI_mstr16_tb_TA
+
+Top level modules:
+	SPI_mstr16_tb_TA
+
+} {} {}} {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv} {1 {vlog -work work -sv -stats=none {C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/SPI_mstr16.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module SPI_mstr16
+
+Top level modules:
+	SPI_mstr16
 
 } {} {}}

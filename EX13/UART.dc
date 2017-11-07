@@ -1,5 +1,5 @@
 ##########################
-# Author: Shyamal Anadkat ECE551 Ex13 #
+# Author: Shyamal Anadkat ECE551
 ##########################
 
 ##########################
@@ -31,10 +31,10 @@ set_input_delay -clock clk 0.5 [copy_collection $prim_inputs]
 set_drive 50 [all_inputs]
 
 ##########################
-# Set output delay(.75) & load(.1) on all outputs #
+# Set output delay(.75) & load(.15) on all outputs #
 ##########################
 set_output_delay -clock clk 0.75 [all_outputs]
-set_load 0.10 [all_outputs]
+set_load 0.15 [all_outputs]
 
 #################################
 # Max transition time for Hot-E reasons #
@@ -55,20 +55,25 @@ compile
 check_design
 
 #########################
-# output vg
+## smash the hierarchy (design ware component)
+#########################
+ungroup -all -flatten
+set current_design UART
+compile
+check_design
+
+#########################
+## report min and max delay
+#########################
+report_timing -delay max > max_delay.rpt
+report_timing -delay min > min_delay.rpt
+
+#########################
+# output vg netlist (flat)
 #########################
 write -format verilog UART -output UART.vg
 
 #########################
-## design ware component caused extra pins
+## design ware component area report
 #########################
 report_area > UART_area.txt
-
-#########################
-## smash the hierarchy (design ware component)
-#########################
-ungroup -all
-set current_design UART
-compile
-check_design
-report_area > UART_area_smashed.txt
