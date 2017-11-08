@@ -1,8 +1,17 @@
+/* Author: Shyamal Anadkat <<->> flght_cntrl_chk_tb */
+
+//////////////////////////////////////////////////|
+// Testbench for FLGHT_CONTROL                   ||
+//////////////////////////////////////////////////|
 module flght_cntrl_chk_tb ();
 
-	reg clk;
-	reg[9:0] i;
-///////////////////////////////////|
+
+//////////////////////////////////////////////////|
+//// stimuli and required signals ////
+//////////////////////////////////////////////////|
+reg clk;
+reg[9:0] i;
+
 reg [107:0] stim_mem [0:999];  
 reg [107:0] stim;    
 reg [43:0] response;
@@ -41,13 +50,20 @@ flght_cntrl iDUT(.clk(clk),
 	.rght_spd(response[10:0]));
 
 
+//////////////////////////////////////////////////|
+//// start testbench - initial block           ////
+//////////////////////////////////////////////////|
 initial begin
-	//// read response and stim files in resp vectors ////
-	$readmemh("flght_cntrl_stim.hex",stim_mem);
-	$readmemh("flght_cntrl_resp.hex",expected_mem);
 
-	clk = 0;
-	err = 0;
+////There are 1000 vectors of stimulus and
+////response. Read each file into a memory using
+////$readmemh.
+//// read response and stim files in resp vectors ////
+$readmemh("flght_cntrl_stim.hex",stim_mem);
+$readmemh("flght_cntrl_resp.hex",expected_mem);
+
+clk = 0;
+err = 0;
 
 //// exhaustive self-checking test bench ////
 for(i = 0; i < 1000; i = i + 1) 
@@ -66,15 +82,18 @@ begin
    		i, stim, expected_mem[i] , response);
    	$stop();
    end
-
 end
 
+//////////////////////////////////////////////////|
+//// print out success message                 ////
+//////////////////////////////////////////////////|
 if(!err) begin
 	$display("***SUCCESS: TESTS PASSED***");
 end
-$stop();
+$stop(); //// stop and debug
 end
 
+//// clk toggle ////
 always
 #5 clk <= ~clk;
 

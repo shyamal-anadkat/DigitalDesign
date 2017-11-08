@@ -1,8 +1,16 @@
+/* Author: Shyamal Anadkat <<->> flght_cntrl */
+
+//////////////////////////////////////////////////|
+// Module for flght_cntrl calculations           ||
+//////////////////////////////////////////////////|
 module flght_cntrl(clk,rst_n,vld,inertial_cal,d_ptch,d_roll,d_yaw,ptch,
 	roll,yaw,thrst,frnt_spd,bck_spd,lft_spd,rght_spd);
 
 parameter D_QUEUE_DEPTH = 14;		// delay for derivative term
 
+///////////////////////////////////////////////
+// Module Interface Input and Outputs /////////
+///////////////////////////////////////////////
 input clk,rst_n;
 input vld;									// tells when a new valid inertial reading ready
 											// only update D_QUEUE on vld readings
@@ -54,12 +62,14 @@ wire [10:0] frnt_spd_sat, back_spd_sat, left_spd_sat, right_spd_sat;
   localparam MIN_6 = 6'h20;
   localparam MAX_11 = 11'h7FF;
   
-/// OK...rest is up to you...good luck! ///
+///////////////////////////////////////////////
+//// ptch, roll, yaw err calculations ////
+///////////////////////////////////////////////
 
-//ptch, roll, yaw err calculations 
+
 assign ptch_err = ptch - d_ptch;
 
-//signed-err-sat 17 to 10
+/// signed-err-sat 17 to 10 ////
 assign ptch_err_sat = (ptch_err[16]) ?           
 ((&ptch_err[15:9]) ? ptch_err[9:0] : MIN_10) :  
 ((|ptch_err[15:9]) ? MAX_10: ptch_err[9:0]);
@@ -69,13 +79,19 @@ assign roll_err_sat = (roll_err[16]) ?
 ((&roll_err[15:9]) ? roll_err[9:0] : MIN_10) :  
 ((|roll_err[15:9]) ? MAX_10: roll_err[9:0]);
 
-
 assign yaw_err =  yaw -  d_yaw;
 assign yaw_err_sat = (yaw_err[16]) ?           
 ((&yaw_err[15:9]) ? yaw_err[9:0] : MIN_10) :  
 ((|yaw_err[15:9]) ? MAX_10: yaw_err[9:0]);
 
-//Shift on vld
+
+///////////////////////////////////////////////
+////Create a queue of parametized depth and width of
+////10-bits. (HINT: use a for loop) This queue will store
+////previous error terms. The queue should be reset to
+////zero on rst_n and should shift on vld.
+///////////////////////////////////////////////
+
 always_ff @(posedge clk, negedge rst_n)begin
 	if (!rst_n) begin
 		for (x = 0; x < D_QUEUE_DEPTH; x=x+1) begin
@@ -96,19 +112,27 @@ always_ff @(posedge clk, negedge rst_n)begin
 	end
 end
 
-//PTCH
+
+///////////////////////////////////////////////
+//// Pterm and Dterm Calculations          ////
+///////////////////////////////////////////////
+
+//// ptch_d_diff calculation ////
 assign ptch_D_diff = ptch_err_sat - prev_ptch_err[D_QUEUE_DEPTH-1];
-//saturate ptch_D_Diff [9:0] 10 to 6 bits 
+
+//// saturate ptch_D_Diff [9:0] 10 to 6 bits ////
 assign ptch_D_diff_sat = (ptch_D_diff[9]) ?           
 ((&ptch_D_diff[8:6]) ? ptch_D_diff[5:0] : MIN_6) :     
 ((|ptch_D_diff[8:6]) ? MAX_6 : ptch_D_diff[5:0]);
-//signed multiply
+
+//// signed multiply ////
 assign ptch_dterm = ($signed(D_COEFF) * ptch_D_diff_sat);
-//ptch_pterm = (5/8) * ptch_err_sat OR [1/2(p) + 1/8(p)]
+
+////ptch_pterm = (5/8) * ptch_err_sat OR [1/2(p) + 1/8(p)] ////
 assign ptch_pterm = ((ptch_err_sat >>> 1) + (ptch_err_sat >>> 3)); 
 
 
-//ROLL
+//// Roll pterm and d term calculations ////
 assign roll_D_diff = roll_err_sat - prev_roll_err[D_QUEUE_DEPTH-1];
 assign roll_D_diff_sat = (roll_D_diff[9]) ?           
 ((&roll_D_diff[8:6]) ? roll_D_diff[5:0] : MIN_6) :     
@@ -127,9 +151,9 @@ assign yaw_D_diff_sat = (yaw_D_diff[9]) ?
 assign yaw_dterm =  ($signed(D_COEFF) * yaw_D_diff_sat);
 assign yaw_pterm =  ((yaw_err_sat >>> 1) +  (yaw_err_sat >>> 3)); 
 
+// Front_speed = 
+// thrst + MIN_RUN_SPEED – ptch_Pterm – ptch_Dterm – yaw_Pterm – yaw_Dterm
 
-
-//Front_speed = thrst + MIN_RUN_SPEED – ptch_Pterm – ptch_Dterm – yaw_Pterm – yaw_Dterm
 assign frnt_spd_sum = 
 MIN_RUN_SPEED + 
 {4'h0, thrst} - 
@@ -138,7 +162,9 @@ MIN_RUN_SPEED +
 {{3{yaw_pterm[9]}}, yaw_pterm} -
 {yaw_dterm[11], yaw_dterm};
 
-//Back_speed = thrst + MIN_RUN_SPEED + ptch_Pterm + ptch_Dterm – yaw_Pterm – yaw_Dterm
+// Back_speed = 
+// thrst + MIN_RUN_SPEED + ptch_Pterm + ptch_Dterm – yaw_Pterm – yaw_Dterm
+
 assign back_spd_sum =
 MIN_RUN_SPEED + 
 {4'h0, thrst} +
@@ -148,7 +174,9 @@ MIN_RUN_SPEED +
 {yaw_dterm[11], yaw_dterm};
 
 
-//Left_speed = thrst + MIN_RUN_SPEED - roll_Pterm - roll_Dterm + yaw_Pterm + yaw_Dterm
+// Left_speed = 
+// thrst + MIN_RUN_SPEED - roll_Pterm - roll_Dterm + yaw_Pterm + yaw_Dterm
+
 assign left_spd_sum = 
 MIN_RUN_SPEED + 
 {4'h0, thrst} -
@@ -157,7 +185,9 @@ MIN_RUN_SPEED +
 {{3{yaw_pterm[9]}}, yaw_pterm} +
 {yaw_dterm[11], yaw_dterm};
 
-//Right_speed = thrst + MIN_RUN_SPEED + roll_Pterm + roll_Dterm + yaw_Pterm + yaw_Dterm
+// Right_speed = 
+// thrst + MIN_RUN_SPEED + roll_Pterm + roll_Dterm + yaw_Pterm + yaw_Dterm
+
 assign right_spd_sum = 
 MIN_RUN_SPEED + 
 {4'h0, thrst} +
@@ -166,14 +196,15 @@ MIN_RUN_SPEED +
 {{3{yaw_pterm[9]}}, yaw_pterm} +
 {yaw_dterm[11], yaw_dterm};
 
-//saturate 13 to 11 bits (unsigned)
+//// saturate 13 to 11 bits (unsigned) ////
 
 assign frnt_spd_sat  = (|frnt_spd_sum[12:11]) ? MAX_11 : frnt_spd_sum[10:0];	
 assign back_spd_sat  = (|back_spd_sum[12:11]) ? MAX_11 : back_spd_sum[10:0];	
 assign left_spd_sat  = (|left_spd_sum[12:11]) ? MAX_11 : left_spd_sum[10:0];	
 assign right_spd_sat = (|right_spd_sum[12:11]) ? MAX_11 : right_spd_sum[10:0];	
 
-//calibration 
+//// calibration //// 
+//// infer the mux to force the motor speed to CAL_SPEED during calibration.
 assign frnt_spd = inertial_cal ? CAL_SPEED : frnt_spd_sat;
 assign bck_spd = inertial_cal ? CAL_SPEED : back_spd_sat;
 assign lft_spd = inertial_cal ? CAL_SPEED : left_spd_sat;

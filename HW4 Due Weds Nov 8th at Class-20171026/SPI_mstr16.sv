@@ -13,8 +13,8 @@ output logic SS_n, SCLK, MOSI,done;
 output logic [15:0] rd_data;
 
 input clk, rst_n, MISO;
-input wrt;				//high for 1 clk period wld init a SPI transaction
-input [15:0] cmd;		//cmd to send (ADC chnnl included)
+input wrt;				// high for 1 clk period wld init a SPI transaction
+input [15:0] cmd;		      // cmd to send (ADC chnnl included)
 
 
 ///////////////////////////////////////////////
@@ -26,6 +26,9 @@ logic [4:0] bit_cntr; 	//bit-cntr
 logic rst_cnt, shft,set_done, clr_done;
 logic smpl, MISO_smpl;
 logic MISO_ff1, MISO_ff2;
+
+localparam smpl_bits = 5'b01111;
+localparam shft_bits = 5'b11111;
 
 
 ///////////////////////////////////////////////
@@ -149,7 +152,7 @@ end
       	end
 
       	FRONT_PORCH: begin
-      		if(sclk_div == 5'b11111) begin
+      		if(sclk_div == shft_bits) begin
       			nxt_state = BITS;
       		end else begin
       			nxt_state = FRONT_PORCH;
@@ -158,13 +161,13 @@ end
 
       	/// Actual shifting and sampling happens here ///
       	BITS: begin 
-      		if(bit_cntr == 4'b1111 & sclk_div == 5'b01111) begin
+      		if(bit_cntr == 4'b1111 & sclk_div == smpl_bits) begin
       			nxt_state = BACK_PORCH;
       			smpl = 1'b1; 
-      		end else if(sclk_div == 5'b01111) begin
+      		end else if(sclk_div == smpl_bits) begin
       			nxt_state = BITS;
       			smpl = 1'b1;
-      		end else if(sclk_div == 5'b11111) begin
+      		end else if(sclk_div == shft_bits) begin
       			nxt_state = BITS;
       			shft = 1'b1;
       		end else begin
@@ -173,7 +176,7 @@ end
       	end 
 
       	BACK_PORCH: begin 
-      		if(sclk_div == 5'b11111) begin
+      		if(sclk_div == shft_bits) begin
       			set_done = 1;
       			rst_cnt = 1;
       			shft = 1'b1;
