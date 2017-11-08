@@ -1,10 +1,12 @@
 module CommMaster 
-	(TX, resp, resp_rdy, cmd, snd_cmd, data, clk, rst_n);
+	(TX, cmd, snd_cmd, data, clk, rst_n);
+
+///////////////////////////////////////////////
+// Module Interface Input and Outputs /////////
+///////////////////////////////////////////////
 
 //outputs
 output logic TX;
-output logic [7:0] resp;
-output logic resp_rdy;
 
 //inputs 
 input clk, rst_n;
@@ -12,34 +14,52 @@ input [7:0] cmd;
 input snd_cmd;
 input [15:0] data;
 
-//internal signals
+
+///////////////////////////////////////////////
+/// internal signals                        ///
+///////////////////////////////////////////////
+
 logic [1:0] sel;
-logic snd_frm;
 logic trmt;
 logic tx_done;
 logic frm_snt;
 logic set_cmplt, clr_cmplt;
 
-//input to UART
-logic [7:0] tx_data;
+logic [7:0] tx_data; //input to UART
+logic [7:0] low_bits, mid_bits;
+
 
 //// Define state as enumerated type /////
 typedef enum reg {IDLE, WAITH, WAITM, WAITL} state_t;
 state_t state, nxt_state;
 
 
-//assign tx_data = (sel = 2'b10) ? 
-
-UART uart_mod (.clk(clk),
+//// instantiate transceiver ////
+UART_tx txmod(
+	.clk(clk),
 	.rst_n(rst_n),
-	.RX(),.TX(),
-	.rx_rdy(),
-	.clr_rx_rdy(),
-	.rx_data(),
-	.trmt(),
-	.tx_data(),
+	.TX(TX),
+	.trmt(trmt),
+	.tx_data(tx_data),
 	.tx_done(tx_done));
 
+
+//// flops for high and mid bits ////
+always_ff @(posedge clk) begin
+	if(snd_cmd)
+		low_bits <= data[7:0];
+end
+
+always_ff @(posedge clk) begin
+	if(snd_cmd)
+		mid_bits <= data[15:8];
+end
+
+//// tx_data select logic /////
+assign tx_data = 
+(sel ==  2'b01) ? mid_bits : 
+(sel ==  2'b10) ? cmd[7:0] :
+(sel ==  2'b00) ? low_bits; 
 
 always_comb begin 
 	sel = 2'b10;
@@ -49,9 +69,10 @@ always_comb begin
 
 	case (state)
 		IDLE: begin 
-			if(snd_frm) begin
+			if(snd_cmd) begin
 				trmt = 1;
 				clr_cmplt = 1;
+				sel = 2'b10;
 				nxt_state = WAITH;
 			end else begin
 				nxt_state = IDLE;
@@ -65,6 +86,7 @@ always_comb begin
 				nxt_state = WAITM;
 			end else begin 
 				nxt_state = WAITH;
+				sel = 2'b10;
 			end
 		end
 
@@ -74,6 +96,7 @@ always_comb begin
 				trmt = 1;
 				nxt_state = WAITL;
 			end else begin
+				sel = 2'b01;
 				nxt_state = WAITM;
 			end
 
@@ -85,6 +108,7 @@ always_comb begin
 			nxt_state = IDLE;
 		end else begin
 			nxt_state = WAITL;
+			sel = 2'b00;
 		end
 	end
 endcase
@@ -96,10 +120,11 @@ end
 ////////////////////////////
 // Infer state flop next //
 //////////////////////////
-always_ff @(posedge clk or negedge rst_n)
-if (!rst_n)
-	state <= IDLE;
-else
-state <= nxt_state;
+always_ff @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		state <= IDLE;
+	else
+	state <= nxt_state;
+end
 
 endmodule

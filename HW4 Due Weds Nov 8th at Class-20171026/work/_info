@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/zosta/OneDrive/ECE551/Exercise14 (Designing  Testing Flight Control Math)-20171026
 vADC128S
 Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z1 !s110 1510099114
+Z1 !s110 1510102752
 !i10b 1
 !s100 0damBXUWz_8:HCk]^=0]c2
 Izb6[n_oOJX5PmC_o:e;Y80
@@ -26,7 +26,7 @@ Z5 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z6 !s108 1510099114.000000
+Z6 !s108 1510102752.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/ADC128S.sv|
 !s101 -O0
@@ -35,7 +35,7 @@ Z7 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -
 n@a@d@c128@s
 vflght_cntrl
 R0
-Z8 !s110 1510099115
+!s110 1510102762
 !i10b 1
 !s100 HoTJYhzBTM:KJEIS6>H:91
 IYP_=ED3j?=?<z5PZbXbCc3
@@ -51,7 +51,7 @@ R5
 r1
 !s85 0
 31
-Z9 !s108 1510099115.000000
+!s108 1510102762.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl.sv|
 !s101 -O0
@@ -59,7 +59,7 @@ Z9 !s108 1510099115.000000
 R7
 vflght_cntrl_chk_tb
 R0
-R8
+Z8 !s110 1510102753
 !i10b 1
 !s100 o>Pj_Q:l2F_4gHUMiO8]z2
 IK4a^Q?l2_RaA6c[EijJgQ2
@@ -75,14 +75,14 @@ R5
 r1
 !s85 0
 31
-R6
+Z9 !s108 1510102753.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_chk_tb.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_chk_tb.sv|
 !s101 -O0
 !i113 1
 R7
 vflght_cntrl_dbg_tb
-R8
+!s110 1510102758
 !i10b 1
 !s100 S6f6NLEG9i2`j^9<[MgS?0
 I@aRkJkG6d[iWPH^0CAYK53
@@ -96,7 +96,7 @@ R5
 r1
 !s85 0
 31
-R9
+!s108 1510102758.000000
 !s107 C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_dbg_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/zosta/OneDrive/ECE551/HW4 Due Weds Nov 8th at Class-20171026/flght_cntrl_dbg_tb.v|
 !s101 -O0
@@ -154,7 +154,7 @@ R7
 n@s@p@i_mstr
 vSPI_mstr16
 R0
-R1
+R8
 !i10b 1
 !s100 kPKMnb`Rhg]`7BQ2;cQ^z1
 I^0ENi0DRD4A>BHz[@_PGi3
@@ -170,7 +170,7 @@ R5
 r1
 !s85 0
 31
-R6
+R9
 R13
 R14
 !s101 -O0
