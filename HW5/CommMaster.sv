@@ -1,15 +1,21 @@
 module CommMaster 
-	(TX, cmd, snd_cmd, data, clk, rst_n);
+	(resp, resp_rdy, frm_snt, TX, RX, cmd, snd_cmd, data, clk, rst_n);
 
 ///////////////////////////////////////////////
 // Module Interface Input and Outputs /////////
 ///////////////////////////////////////////////
 
-//outputs
+//// outputs ////
 output logic TX;
 
-//inputs 
+//// outputs for testbench ////
+output logic [7:0] resp;
+output logic resp_rdy;
+output logic frm_snt;
+
+//// inputs ////
 input clk, rst_n;
+input RX;
 input [7:0] cmd;
 input snd_cmd;
 input [15:0] data;
@@ -22,7 +28,6 @@ input [15:0] data;
 logic [1:0] sel;
 logic trmt;
 logic tx_done;
-logic frm_snt;
 logic set_cmplt, clr_cmplt;
 
 logic [7:0] tx_data; //input to UART
@@ -30,15 +35,18 @@ logic [7:0] low_bits, mid_bits;
 
 
 //// Define state as enumerated type /////
-typedef enum reg {IDLE, WAITH, WAITM, WAITL} state_t;
+typedef enum reg [1:0] {IDLE, WAITH, WAITM, WAITL} state_t;
 state_t state, nxt_state;
 
 
 //// instantiate transceiver ////
-UART_tx txmod(
-	.clk(clk),
+UART uartmod
+(.clk(clk),
 	.rst_n(rst_n),
-	.TX(TX),
+	.RX(RX),.TX(TX),
+	.rx_rdy(resp_rdy),
+	.clr_rx_rdy(),
+	.rx_data(resp),
 	.trmt(trmt),
 	.tx_data(tx_data),
 	.tx_done(tx_done));
@@ -46,28 +54,56 @@ UART_tx txmod(
 
 //// flops for high and mid bits ////
 always_ff @(posedge clk) begin
-	if(snd_cmd)
+	if(snd_cmd) begin
 		low_bits <= data[7:0];
+	end
 end
 
 always_ff @(posedge clk) begin
-	if(snd_cmd)
+	if(snd_cmd) begin
 		mid_bits <= data[15:8];
+	end
+end
+
+//// frm_snt flop ////
+always_ff @(posedge clk or negedge rst_n) begin
+	if(!rst_n) begin
+		frm_snt <= 1'b0;
+	end else if (clr_cmplt) begin
+		frm_snt <= 1'b0;
+	end else if(set_cmplt) begin
+		frm_snt <= 1'b1;
+	end
 end
 
 //// tx_data select logic /////
-assign tx_data = 
-(sel ==  2'b01) ? mid_bits : 
-(sel ==  2'b10) ? cmd[7:0] :
-(sel ==  2'b00) ? low_bits; 
+assign tx_data = (sel ==  2'b01) ? (mid_bits) : 
+(sel == 2'b10) ? (cmd[7:0]) : (low_bits); 
 
+////////////////////////////
+// Infer state flop next //
+//////////////////////////
+always_ff @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		state <= IDLE;
+	end else begin
+		state <= nxt_state;
+	end 
+end
+
+
+//// State Machine Implementation ////
 always_comb begin 
+
+	//// Default Outputs ////
 	sel = 2'b10;
 	trmt = 0;
 	set_cmplt = 0;
 	clr_cmplt = 0;
+	nxt_state = IDLE;
 
 	case (state)
+		
 		IDLE: begin 
 			if(snd_cmd) begin
 				trmt = 1;
@@ -76,6 +112,7 @@ always_comb begin
 				nxt_state = WAITH;
 			end else begin
 				nxt_state = IDLE;
+				set_cmplt = 1;
 			end
 		end
 
@@ -87,6 +124,7 @@ always_comb begin
 			end else begin 
 				nxt_state = WAITH;
 				sel = 2'b10;
+				clr_cmplt = 1;
 			end
 		end
 
@@ -97,6 +135,7 @@ always_comb begin
 				nxt_state = WAITL;
 			end else begin
 				sel = 2'b01;
+				clr_cmplt = 1;
 				nxt_state = WAITM;
 			end
 
@@ -108,23 +147,12 @@ always_comb begin
 			nxt_state = IDLE;
 		end else begin
 			nxt_state = WAITL;
+			clr_cmplt = 1;
 			sel = 2'b00;
 		end
 	end
 endcase
-
 end
 
-
-
-////////////////////////////
-// Infer state flop next //
-//////////////////////////
-always_ff @(posedge clk or negedge rst_n) begin
-	if (!rst_n)
-		state <= IDLE;
-	else
-	state <= nxt_state;
-end
 
 endmodule
